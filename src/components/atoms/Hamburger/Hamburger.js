@@ -31,9 +31,9 @@ const Line = styled.span`
   background: black;
 `;
 
-function Hamburger() {
+function Hamburger({ onClick }) {
   return (
-    <WrapperButton>
+    <WrapperButton onClick={onClick}>
       <Container>
         <Line />
         <Line />
