@@ -1,10 +1,7 @@
+import Root from './components/templates/Root/Root';
 
 function App() {
-  return (
-    <div>
-      <h1>Hello!</h1>
-    </div>
-  );
+  return <Root />;
 }
 
 export default App;
