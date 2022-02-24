@@ -1,8 +1,10 @@
+import styled from 'styled-components';
+
 import { ReactComponent as Logo } from '../../../assets/images/bread-bank-logo.svg';
+import { useAuth } from '../../../hooks/useAuth';
 import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
 
 import {
-  SidebarWrapper,
   SidebarContainer,
   Header,
   LogoWrapper,
@@ -12,7 +14,7 @@ import {
   Overlay,
 } from './Sidebar.styles';
 
-const sidebarItems = [
+const unauthenticatedItems = [
   {
     text: 'Starting Screen',
     icon: (
@@ -71,9 +73,65 @@ const sidebarItems = [
   },
 ];
 
-function Sidebar({ handleClose }) {
+const UsernameContainer = styled.div`
+  padding: 2px 1rem;
+  color: white;
+  background-color: black;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+
+  & p {
+    margin: 0;
+  }
+`;
+
+function Sidebar({ handleCloseSidebar }) {
+  const { user, logOut } = useAuth();
+
+  const authenticatedContent = (
+    <>
+      <UsernameContainer>
+        <p>JOHN DOE</p>
+        <p>Balance: $30.213,31</p>
+      </UsernameContainer>
+      <SidebarItem
+        key={'logout'}
+        text={'Log Out'}
+        icon={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="red"
+          >
+            <path d="M10 9.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7zm6-3c-1.787 0-3.46.474-4.911 1.295l.228.2 1.396 1.221c1.004-.456 2.114-.716 3.287-.716 4.411 0 8 3.589 8 8s-3.589 8-8 8c-1.173 0-2.283-.26-3.288-.715l-1.396 1.221-.228.2c1.452.82 3.125 1.294 4.912 1.294 5.522 0 10-4.477 10-10s-4.478-10-10-10z" />
+          </svg>
+        }
+        onClick={logOut}
+      />
+      <Browse>Browse</Browse>
+      <ul style={{ margin: '0', padding: '0' }}>
+        {unauthenticatedItems.map(({ text, icon }) => (
+          <SidebarItem key={text} text={text} icon={icon} />
+        ))}
+      </ul>
+    </>
+  );
+
+  const unauthenticatedContent = (
+    <>
+      <Browse>Browse</Browse>
+      <ul style={{ margin: '0', padding: '0' }}>
+        {unauthenticatedItems.map(({ text, icon }) => (
+          <SidebarItem key={text} text={text} icon={icon} />
+        ))}
+      </ul>
+    </>
+  );
+
   return (
-    <SidebarWrapper>
+    <>
       <SidebarContainer>
         <Header>
           <LogoWrapper>
@@ -98,15 +156,10 @@ function Sidebar({ handleClose }) {
             </IconWrapper>
           </IconsContainer>
         </Header>
-        <Browse>Browse</Browse>
-        <ul style={{ margin: '0', padding: '0' }}>
-          {sidebarItems.map(({ text, icon }) => (
-            <SidebarItem key={text} text={text} icon={icon} />
-          ))}
-        </ul>
+        {user ? authenticatedContent : unauthenticatedContent}
       </SidebarContainer>
-      <Overlay onClick={handleClose}></Overlay>
-    </SidebarWrapper>
+      <Overlay onClick={handleCloseSidebar}></Overlay>
+    </>
   );
 }
 

@@ -1,8 +1,16 @@
+import { useAuth } from '../../../hooks/useAuth';
 import Input from '../../atoms/Input/Input';
 
 import { FormWrapper, StyledForm, InputWrapper, LoginButton } from './LoginForm.styles';
 
 function LoginForm() {
+  const { logIn } = useAuth();
+
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    logIn('user', 'pass');
+  };
+
   return (
     <FormWrapper>
       <StyledForm>
@@ -23,7 +31,8 @@ function LoginForm() {
           />
         </InputWrapper>
         <div>
-          <LoginButton>Log In</LoginButton>
+          <LoginButton onClick={handleLogIn}>Log In</LoginButton>
+          <span>Just press the button, logic not implemented :^)</span>
         </div>
       </StyledForm>
     </FormWrapper>

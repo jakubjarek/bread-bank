@@ -19,13 +19,8 @@ const appear = keyframes`
   to {
     opacity: 0.7;
   }
-
 `;
 
-export const SidebarWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
 
 export const Overlay = styled.div`
   width: 100%;
@@ -36,6 +31,10 @@ export const Overlay = styled.div`
   background: black;
   opacity: 0;
   animation: ${appear} linear 200ms forwards;
+
+  @media screen and (min-width: 1310px) {
+    display: none;
+  }
 `;
 
 export const SidebarContainer = styled.div`
@@ -51,6 +50,11 @@ export const SidebarContainer = styled.div`
 
   transform: translateX(-100%);
   animation: ${slideIn} linear 200ms forwards;
+
+  @media screen and (min-width: 1310px) {
+    transform: translateX(0%);
+    animation: unset;
+  }
 `;
 
 export const Header = styled.div`

@@ -23,26 +23,30 @@ function Input({ label, placeholder, inputId, type }) {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
-  const toggleHovered = () => setHovered((p) => !p);
+  const handleMouseEnter = () => setHovered(true);
+  const handleMouseLeave = () => setHovered(false);
 
-  const toggleFocused = () => setFocused((p) => !p);
+  const handleFocus = () => setFocused(true);
+  const handleBlur = () => setFocused(false);
 
   return (
     <>
-      <Label htmlFor={inputId} focused={focused}>{label}</Label>
+      <Label htmlFor={inputId} focused={focused}>
+        {label}
+      </Label>
       <InputContainer
         hovered={hovered}
         focused={focused}
-        onMouseEnter={toggleHovered}
-        onMouseLeave={toggleHovered}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <IconWrapper>
           <InputIcon type={type} />
         </IconWrapper>
         <StyledInput
           type={type}
-          onFocus={toggleFocused}
-          onBlur={toggleFocused}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           id={inputId}
           placeholder={placeholder}
           hovered={hovered}

@@ -1,27 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 35rem;
   padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-`;
-
-export const ContentContainer = styled.div`
-  max-width: 35rem;
 `;
 
 export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin: 2rem 0;
 `;
 
 export const WelcomeContainer = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   padding: 0 0.75rem;
 `;
 
