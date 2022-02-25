@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Label, InputContainer, StyledInput, IconWrapper } from './Input.styles';
+import {
+  InputWrapper,
+  Label,
+  InputContainer,
+  StyledInput,
+  IconWrapper,
+  ErrorContainer,
+  ErrorMessage,
+  ErrorIconWrapper,
+} from './Input.styles';
 
 const InputIcon = ({ type }) => {
   if (type === 'email') {
@@ -19,19 +28,42 @@ const InputIcon = ({ type }) => {
   }
 };
 
-function Input({ label, placeholder, inputId, type }) {
+function Input({
+  label,
+  placeholder,
+  inputId,
+  type,
+  invalid,
+  invalidMessage,
+  value,
+  handleChange,
+}) {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
-  const handleMouseEnter = () => setHovered(true);
-  const handleMouseLeave = () => setHovered(false);
+  const handleMouseEnter = () => {
+    if (invalid) return;
+    setHovered(true);
+  };
 
-  const handleFocus = () => setFocused(true);
-  const handleBlur = () => setFocused(false);
+  const handleMouseLeave = () => {
+    if (invalid) return;
+    setHovered(false);
+  };
+
+  const handleFocus = () => {
+    if (invalid) return;
+    setFocused(true);
+  };
+
+  const handleBlur = () => {
+    if (invalid) return;
+    setFocused(false);
+  };
 
   return (
-    <>
-      <Label htmlFor={inputId} focused={focused}>
+    <InputWrapper>
+      <Label htmlFor={inputId} focused={focused} invalid={invalid}>
         {label}
       </Label>
       <InputContainer
@@ -39,6 +71,7 @@ function Input({ label, placeholder, inputId, type }) {
         focused={focused}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        invalid={invalid}
       >
         <IconWrapper>
           <InputIcon type={type} />
@@ -51,9 +84,21 @@ function Input({ label, placeholder, inputId, type }) {
           placeholder={placeholder}
           hovered={hovered}
           focused={focused}
+          value={value}
+          onChange={handleChange}
         ></StyledInput>
       </InputContainer>
-    </>
+      {invalid ? (
+        <ErrorContainer>
+          <ErrorIconWrapper>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" />
+            </svg>
+          </ErrorIconWrapper>
+          <ErrorMessage>{invalidMessage}</ErrorMessage>
+        </ErrorContainer>
+      ) : null}
+    </InputWrapper>
   );
 }
 

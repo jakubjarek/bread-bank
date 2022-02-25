@@ -9,9 +9,6 @@ export const StyledForm = styled.form`
   width: 95%;
 `;
 
-export const InputWrapper = styled.div`
-  margin-bottom: 1.5rem;
-`;
 
 export const LoginButton = styled.button`
   border: none;
