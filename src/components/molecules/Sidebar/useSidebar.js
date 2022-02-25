@@ -1,27 +1,12 @@
 import { useState, useEffect } from 'react';
-
-function getWindowWidth() {
-  const { innerWidth: width } = window;
-  return width;
-}
+import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const useSidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+  const [isOpen, setIsOpen] = useState(null);
+  const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    function handleResize() {
-      setWindowWidth(getWindowWidth());
-    }
-
-    if (windowWidth >= 1310) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    windowWidth >= 1310 ? setIsOpen(true) : setIsOpen(false);
   }, [windowWidth]);
 
   const handleOpenSidebar = () => setIsOpen(true);
