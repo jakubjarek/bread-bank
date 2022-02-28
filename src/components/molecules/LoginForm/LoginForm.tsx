@@ -12,15 +12,17 @@ function LoginForm() {
 
   const { logIn } = useAuth();
 
-  const handleEmailChange = (e) => setEmailValue(e.target.value);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setEmailValue(e.target.value);
 
-  const handlePasswordChange = (e) => setPasswordValue(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPasswordValue(e.target.value);
 
-  const handleLogIn = (e) => {
+  const handleLogIn = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (emailValue === 'user' && passwordValue === 'pass') {
-      logIn('user', 'pass');
+      logIn({ login: 'user', password: 'pass' });
       return;
     }
 
@@ -68,7 +70,9 @@ function LoginForm() {
 
         <div>
           <LoginButton onClick={handleLogIn}>Log In</LoginButton>
-          <span>Just press the button, logic not implemented :^)</span>
+          <span style={{ display: 'block', paddingTop: '0.25rem', fontSize: '12px' }}>
+            Psst! It's email: <b>user</b>, password: <b>pass</b>
+          </span>
         </div>
       </StyledForm>
     </FormWrapper>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const useSidebar = () => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const windowWidth = useWindowWidth();
 
   useEffect(() => {

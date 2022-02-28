@@ -31,9 +31,13 @@ const Line = styled.span`
   background: black;
 `;
 
-function Hamburger({ onClick }) {
+export type Props = {
+  handleClick: () => void;
+};
+
+const Hamburger = ({ handleClick }: Props) => {
   return (
-    <WrapperButton onClick={onClick}>
+    <WrapperButton onClick={handleClick}>
       <Container>
         <Line />
         <Line />
@@ -41,6 +45,6 @@ function Hamburger({ onClick }) {
       </Container>
     </WrapperButton>
   );
-}
+};
 
 export default Hamburger;

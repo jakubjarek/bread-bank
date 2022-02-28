@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useAuth } from '../../../hooks/useAuth';
 import Navigation from '../../molecules/Navigation/Navigation';
+import Authenticated from '../Authenticated/Authenticated';
 import Unauthenticated from '../Unauthenticated/Unauthenticated';
 
 const AppWrapper = styled.div`
@@ -15,7 +16,7 @@ function Root() {
   return (
     <AppWrapper>
       <Navigation />
-      {auth.user ? <h1>AMOOGUS??</h1> : <Unauthenticated />}
+      {auth.user ? <Authenticated /> : <Unauthenticated />}
     </AppWrapper>
   );
 }

@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import useSidebar from '../Sidebar/useSidebar';
 
-import Hamburger from '../../atoms/Hamburger/Hamburger';
+import Hamburger from '../Hamburger/Hamburger';
 import Sidebar from '../Sidebar/Sidebar';
 import getWindowWidth from '../../../helpers/getWindowWidth';
 
@@ -20,8 +20,6 @@ const StyledNav = styled.nav`
 `;
 
 const HamburgerContainer = styled.div`
-  margin-left: auto;
-
   @media screen and (min-width: 1310px) {
     display: none;
   }
@@ -36,7 +34,7 @@ function Navigation() {
       {isOpen
         ? createPortal(
             <Sidebar handleCloseSidebar={handleCloseSidebar} />,
-            document.getElementById('modal-container')
+            document.getElementById('modal-container') as HTMLElement
           )
         : null}
     </>
@@ -45,7 +43,7 @@ function Navigation() {
   return (
     <StyledNav>
       <HamburgerContainer>
-        <Hamburger onClick={handleOpenSidebar} />
+        <Hamburger handleClick={handleOpenSidebar} />
       </HamburgerContainer>
       {windowWidth >= 1310 ? <Sidebar /> : sidebarMobile}
     </StyledNav>

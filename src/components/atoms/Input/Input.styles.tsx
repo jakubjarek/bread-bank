@@ -4,7 +4,13 @@ export const InputWrapper = styled.div`
   padding-bottom: 1.5rem;
 `;
 
-export const Label = styled.label`
+interface InputTypes {
+  invalid?: boolean;
+  hovered?: boolean;
+  focused?: boolean;
+}
+
+export const Label = styled.label<InputTypes>`
   display: flex;
   width: fit-content;
   padding: 4px 6px;
@@ -20,7 +26,7 @@ export const Label = styled.label`
   color: ${({ invalid }) => invalid && 'white'};
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.div<InputTypes>`
   width: 100%;
   height: 2.5rem;
   display: flex;

@@ -52,9 +52,16 @@ const StyledLi = styled.li`
   }
 `;
 
-function SidebarItem({ icon, text, onClick }) {
+
+type Props = {
+  icon: any;
+  text: string;
+  handleClick?: () => void
+}
+
+const SidebarItem: React.FC<Props> = ({ icon, text, handleClick }) => {
   return (
-    <StyledLi onClick={onClick}>
+    <StyledLi onClick={handleClick}>
       <Container>
         <IconWrapper>{icon}</IconWrapper>
         <Text>{text}</Text>

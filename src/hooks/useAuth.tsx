@@ -5,10 +5,21 @@ const USER = {
   password: 'pass',
 };
 
-const AuthContext = createContext({});
+interface IUser {
+  login: string;
+  password: string;
+}
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+type AuthContextType = {
+  user: IUser | null;
+  logIn: (userInfo: IUser) => void;
+  logOut: () => void;
+};
+
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider: React.FC = ({ children }) => {
+  const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -17,7 +28,9 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const logIn = (login, password) => {
+  const logIn = (userInfo: IUser) => {
+    const { login, password } = userInfo;
+
     if (login === USER.login && password === USER.password) {
       setUser({ login, password });
       localStorage.setItem('token', JSON.stringify({ login, password }));
@@ -35,7 +48,8 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  const auth = useContext(AuthContext);
+  // typecasted to prevent TS from throwing errors because the context will be null at the beginning
+  const auth = useContext(AuthContext) as AuthContextType;
 
   return auth;
 };

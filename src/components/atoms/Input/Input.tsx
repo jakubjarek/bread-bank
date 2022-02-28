@@ -1,3 +1,4 @@
+import { HTMLInputTypeAttribute } from 'react';
 import { useState } from 'react';
 import {
   InputWrapper,
@@ -10,7 +11,7 @@ import {
   ErrorIconWrapper,
 } from './Input.styles';
 
-const InputIcon = ({ type }) => {
+const InputIcon = ({ type }: {type: HTMLInputTypeAttribute}) => {
   if (type === 'email') {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -28,6 +29,17 @@ const InputIcon = ({ type }) => {
   }
 };
 
+interface InputProps {
+  label: string;
+  placeholder: string;
+  inputId: string;
+  type: HTMLInputTypeAttribute;
+  invalid: boolean;
+  invalidMessage: string;
+  value: string;
+  handleChange: React.ChangeEventHandler;
+}
+
 function Input({
   label,
   placeholder,
@@ -37,7 +49,7 @@ function Input({
   invalidMessage,
   value,
   handleChange,
-}) {
+}: InputProps) {
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
@@ -82,11 +94,9 @@ function Input({
           onBlur={handleBlur}
           id={inputId}
           placeholder={placeholder}
-          hovered={hovered}
-          focused={focused}
           value={value}
           onChange={handleChange}
-        ></StyledInput>
+        />
       </InputContainer>
       {invalid ? (
         <ErrorContainer>
