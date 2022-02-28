@@ -1,5 +1,5 @@
-import { ReactComponent as Logo } from '../../../assets/images/bread-bank-logo.svg';
-import LoginForm from '../../molecules/LoginForm/LoginForm';
+import Logo from '../../atoms/Logo';
+import LoginForm from '../../organisms/LoginForm/LoginForm';
 
 import {
   Container,
@@ -8,7 +8,7 @@ import {
   WelcomeMessage,
 } from './Unauthenticated.styles';
 
-function Unauthenticated() {
+const Unauthenticated = () => {
   return (
     <Container>
       <LogoWrapper>
@@ -22,6 +22,6 @@ function Unauthenticated() {
       <LoginForm />
     </Container>
   );
-}
+};
 
 export default Unauthenticated;

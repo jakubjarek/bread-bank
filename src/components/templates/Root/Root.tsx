@@ -10,7 +10,7 @@ const AppWrapper = styled.div`
   margin-top: 2rem;
 `;
 
-function Root() {
+const Root = () => {
   const auth = useAuth();
 
   return (
@@ -19,6 +19,6 @@ function Root() {
       {auth.user ? <Authenticated /> : <Unauthenticated />}
     </AppWrapper>
   );
-}
+};
 
 export default Root;

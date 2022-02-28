@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
-import Input from '../../atoms/Input/Input';
+import Input from '../../molecules/Input/Input';
 
 import { FormWrapper, StyledForm, LoginButton } from './LoginForm.styles';
 

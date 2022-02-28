@@ -6,8 +6,11 @@ const IconWrapper = styled.div`
   justify-content: center;
 
   & svg {
+    width: 22px;
+    height: 22px;
     transition: fill 200ms ease-in-out;
   }
+
 `;
 
 const Container = styled.div`
@@ -52,14 +55,13 @@ const StyledLi = styled.li`
   }
 `;
 
-
 type Props = {
-  icon: any;
+  icon: React.ReactNode;
   text: string;
-  handleClick?: () => void
-}
+  handleClick?: () => void;
+};
 
-const SidebarItem: React.FC<Props> = ({ icon, text, handleClick }) => {
+const SidebarItem = ({ icon, text, handleClick }: Props) => {
   return (
     <StyledLi onClick={handleClick}>
       <Container>
@@ -68,6 +70,6 @@ const SidebarItem: React.FC<Props> = ({ icon, text, handleClick }) => {
       </Container>
     </StyledLi>
   );
-}
+};
 
 export default SidebarItem;

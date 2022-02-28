@@ -21,7 +21,6 @@ const appear = keyframes`
   }
 `;
 
-
 export const Overlay = styled.div`
   width: 100%;
   height: 100%;
@@ -31,10 +30,6 @@ export const Overlay = styled.div`
   background: black;
   opacity: 0;
   animation: ${appear} linear 200ms forwards;
-
-  @media screen and (min-width: 1310px) {
-    display: none;
-  }
 `;
 
 export const SidebarContainer = styled.div`
@@ -79,20 +74,45 @@ export const IconsContainer = styled.div`
   justify-content: center;
 `;
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+
+  & svg {
+    width: 22px;
+    height: 22px;
+  }
 
   &:first-of-type {
-    margin-right: 12px;
+    margin-right: 6px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: black;
+  }
+
+  &:hover svg,
+  &:focus svg {
+    filter: invert(1);
   }
 `;
 
-export const Browse = styled.div`
-  margin: 0 0.75rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid black;
-  font-size: ${({ theme }) => theme.fontSize.m};
+export const UsernameContainer = styled.div`
+  padding: 2px 1rem;
+  color: white;
+  background-color: black;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+
+  & p {
+    margin: 0;
+  }
 `;
