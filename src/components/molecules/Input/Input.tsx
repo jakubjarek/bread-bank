@@ -1,20 +1,9 @@
-import { HTMLInputTypeAttribute } from 'react';
 import { useState } from 'react';
-import {
-  InputWrapper,
-  Label,
-  InputContainer,
-  StyledInput,
-  IconWrapper,
-  ErrorContainer,
-  ErrorMessage,
-  ErrorIconWrapper,
-} from './Input.styles';
-
+import * as S from './Input.styles';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 
-const InputIcon = ({ type }: { type: HTMLInputTypeAttribute }) => {
+const InputIcon = ({ type }: { type: React.HTMLInputTypeAttribute }) => {
   switch (type) {
     case 'email':
       return <AiOutlineMail />;
@@ -29,7 +18,7 @@ interface InputProps {
   label: string;
   placeholder: string;
   inputId: string;
-  type?: HTMLInputTypeAttribute;
+  type?: React.HTMLInputTypeAttribute;
   invalid: boolean;
   invalidMessage: string;
   value: string;
@@ -70,11 +59,11 @@ const Input = ({
   };
 
   return (
-    <InputWrapper>
-      <Label htmlFor={inputId} focused={focused} invalid={invalid}>
+    <S.Wrapper>
+      <S.Label htmlFor={inputId} focused={focused} invalid={invalid}>
         {label}
-      </Label>
-      <InputContainer
+      </S.Label>
+      <S.Container
         hovered={hovered}
         focused={focused}
         onMouseEnter={handleMouseEnter}
@@ -83,12 +72,12 @@ const Input = ({
       >
         {type !== 'text' ? (
           <>
-            <IconWrapper>
+            <S.Icon>
               <InputIcon type={type} />
-            </IconWrapper>
+            </S.Icon>
           </>
         ) : null}
-        <StyledInput
+        <S.Input
           type={type}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -97,18 +86,18 @@ const Input = ({
           value={value}
           onChange={handleChange}
         />
-      </InputContainer>
+      </S.Container>
       {invalid ? (
-        <ErrorContainer>
-          <ErrorIconWrapper>
+        <S.Error>
+          <S.ErrorIcon>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M16.971 0h-9.942l-7.029 7.029v9.941l7.029 7.03h9.941l7.03-7.029v-9.942l-7.029-7.029zm-1.402 16.945l-3.554-3.521-3.518 3.568-1.418-1.418 3.507-3.566-3.586-3.472 1.418-1.417 3.581 3.458 3.539-3.583 1.431 1.431-3.535 3.568 3.566 3.522-1.431 1.43z" />
             </svg>
-          </ErrorIconWrapper>
-          <ErrorMessage>{invalidMessage}</ErrorMessage>
-        </ErrorContainer>
+          </S.ErrorIcon>
+          <S.ErrorMessage>{invalidMessage}</S.ErrorMessage>
+        </S.Error>
       ) : null}
-    </InputWrapper>
+    </S.Wrapper>
   );
 };
 

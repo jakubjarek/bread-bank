@@ -6,7 +6,7 @@ const useSidebar = () => {
   const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    windowWidth >= 1310 ? setIsOpen(true) : setIsOpen(false);
+    windowWidth >= 910 ? setIsOpen(true) : setIsOpen(false);
   }, [windowWidth]);
 
   const handleOpenSidebar = () => setIsOpen(true);

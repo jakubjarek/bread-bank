@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
-export const FormWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   width: 95%;
 `;
 
 
-export const LoginButton = styled.button`
+export const Submit = styled.button`
   border: none;
   cursor: pointer;
   width: 100%;

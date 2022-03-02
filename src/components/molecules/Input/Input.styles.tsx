@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const InputWrapper = styled.div`
-  padding-bottom: 1.5rem;
-`;
-
 interface InputTypes {
   invalid?: boolean;
   hovered?: boolean;
   focused?: boolean;
 }
+
+export const Wrapper = styled.div`
+  padding-bottom: 1.5rem;
+`;
 
 export const Label = styled.label<InputTypes>`
   display: flex;
@@ -26,7 +26,7 @@ export const Label = styled.label<InputTypes>`
   color: ${({ invalid }) => invalid && 'white'};
 `;
 
-export const InputContainer = styled.div<InputTypes>`
+export const Container = styled.div<InputTypes>`
   width: 100%;
   height: 2.5rem;
   display: flex;
@@ -41,7 +41,7 @@ export const InputContainer = styled.div<InputTypes>`
   box-shadow: ${({ invalid }) => invalid && `inset 0 0 0 2px red`};
 `;
 
-export const StyledInput = styled.input`
+export const Input = styled.input`
   border: none;
   outline: none;
   flex: 1;
@@ -53,7 +53,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const IconWrapper = styled.div`
+export const Icon = styled.div`
   height: 100%;
   padding: 4px 8px;
   display: flex;
@@ -66,13 +66,13 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const ErrorContainer = styled.div`
+export const Error = styled.div`
   display: flex;
   align-items: center;
   margin-top: 4px;
 `;
 
-export const ErrorIconWrapper = styled.div`
+export const ErrorIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

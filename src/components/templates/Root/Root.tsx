@@ -4,9 +4,18 @@ import Navigation from '../../molecules/Navigation/Navigation';
 import Authenticated from '../Authenticated/Authenticated';
 import Unauthenticated from '../Unauthenticated/Unauthenticated';
 
-const AppWrapper = styled.div`
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: 910px) {
+    margin-left: 350px;
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
   max-width: 35rem;
-  margin: 0 auto;
   margin-top: 2rem;
 `;
 
@@ -14,10 +23,12 @@ const Root = () => {
   const auth = useAuth();
 
   return (
-    <AppWrapper>
+    <>
       <Navigation />
-      {auth.user ? <Authenticated /> : <Unauthenticated />}
-    </AppWrapper>
+      <Container>
+        <Wrapper>{auth.user ? <Authenticated /> : <Unauthenticated />}</Wrapper>
+      </Container>
+    </>
   );
 };
 

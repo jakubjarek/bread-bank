@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import Input from '../../molecules/Input/Input';
-
-import { FormWrapper, StyledForm, LoginButton } from './LoginForm.styles';
+import * as S from './LoginForm.styles';
 
 function LoginForm() {
-  const [emailValidity, setEmailValidity] = useState({ invalid: false, message: '' });
+  const [usernameValidity, setUsernameValidity] = useState({ invalid: false, message: '' });
   const [passwordValidity, setPasswordValidity] = useState({ invalid: false, message: '' });
-  const [emailValue, setEmailValue] = useState('');
+  const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
   const { logIn } = useAuth();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEmailValue(e.target.value);
+    setUsernameValue(e.target.value);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPasswordValue(e.target.value);
@@ -21,21 +20,21 @@ function LoginForm() {
   const handleLogIn = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (emailValue === 'user' && passwordValue === 'pass') {
+    if (usernameValue === 'user' && passwordValue === 'pass') {
       logIn({ login: 'user', password: 'pass' });
       return;
     }
 
-    if (emailValue === 'user' && passwordValue !== 'pass') {
-      setEmailValidity({ invalid: false, message: '' });
+    if (usernameValue === 'user' && passwordValue !== 'pass') {
+      setUsernameValidity({ invalid: false, message: '' });
     }
 
-    if (passwordValue === 'pass' && emailValue !== 'user') {
+    if (passwordValue === 'pass' && usernameValue !== 'user') {
       setPasswordValidity({ invalid: false, message: '' });
     }
 
-    if (emailValue !== 'user') {
-      setEmailValidity({ invalid: true, message: 'No user with that e-mail.' });
+    if (usernameValue !== 'user') {
+      setUsernameValidity({ invalid: true, message: 'No user with that e-mail.' });
     }
 
     if (passwordValue !== 'pass') {
@@ -44,16 +43,16 @@ function LoginForm() {
   };
 
   return (
-    <FormWrapper>
-      <StyledForm>
+    <S.Wrapper>
+      <S.Form>
         <Input
-          inputId={'login.email'}
-          label={'E-mail address'}
-          placeholder={'E-mail address'}
+          inputId={'login.username'}
+          label={'Username'}
+          placeholder={'Username'}
           type={'email'}
-          invalid={emailValidity.invalid}
-          invalidMessage={emailValidity.message}
-          value={emailValue}
+          invalid={usernameValidity.invalid}
+          invalidMessage={usernameValidity.message}
+          value={usernameValue}
           handleChange={handleEmailChange}
         />
 
@@ -67,15 +66,12 @@ function LoginForm() {
           value={passwordValue}
           handleChange={handlePasswordChange}
         />
-
-        <div>
-          <LoginButton onClick={handleLogIn}>Log In</LoginButton>
-          <span style={{ display: 'block', paddingTop: '0.25rem', fontSize: '12px' }}>
-            Psst! It's email: <b>user</b>, password: <b>pass</b>
-          </span>
+        <S.Submit onClick={handleLogIn}>Log In</S.Submit>
+        <div style={{ paddingTop: '0.25rem', fontSize: '12px' }}>
+          Psst! It's username: <b>user</b> password: <b>pass</b>
         </div>
-      </StyledForm>
-    </FormWrapper>
+      </S.Form>
+    </S.Wrapper>
   );
 }
 

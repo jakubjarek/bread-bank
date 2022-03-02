@@ -1,17 +1,17 @@
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
-import useSidebar from '../Sidebar/useSidebar';
-
+import useSidebar from '../../organisms/Sidebar/useSidebar';
 import Hamburger from '../Hamburger/Hamburger';
-import Sidebar from '../Sidebar/Sidebar';
-import getWindowWidth from '../../../helpers/getWindowWidth';
+import Sidebar from '../../organisms/Sidebar/Sidebar';
+import useWindowWidth from '../../../hooks/useWindowWidth';
 
-const StyledNav = styled.nav`
+const Nav = styled.nav`
   width: 100%;
-  padding: 6px 1rem;
+  padding: 1rem;
+  padding-bottom: 0;
   display: flex;
 
-  @media screen and (min-width: 1310px) {
+  @media screen and (min-width: 910px) {
     position: fixed;
     top: 0;
     left: 0;
@@ -19,15 +19,9 @@ const StyledNav = styled.nav`
   }
 `;
 
-const HamburgerContainer = styled.div`
-  @media screen and (min-width: 1310px) {
-    display: none;
-  }
-`;
-
 function Navigation() {
   const { isOpen, handleOpenSidebar, handleCloseSidebar } = useSidebar();
-  const windowWidth = getWindowWidth();
+  const windowWidth = useWindowWidth();
 
   const sidebarMobile = (
     <>
@@ -41,12 +35,10 @@ function Navigation() {
   );
 
   return (
-    <StyledNav>
-      <HamburgerContainer>
-        <Hamburger handleClick={handleOpenSidebar} />
-      </HamburgerContainer>
-      {windowWidth >= 1310 ? <Sidebar /> : sidebarMobile}
-    </StyledNav>
+    <Nav>
+      {windowWidth >= 910 ? null : <Hamburger handleClick={handleOpenSidebar} />}
+      {windowWidth >= 910 ? <Sidebar /> : sidebarMobile}
+    </Nav>
   );
 }
 

@@ -1,26 +1,18 @@
 import Logo from '../../atoms/Logo';
 import LoginForm from '../../organisms/LoginForm/LoginForm';
-
-import {
-  Container,
-  LogoWrapper,
-  WelcomeContainer,
-  WelcomeMessage,
-} from './Unauthenticated.styles';
+import * as S from './Unauthenticated.styles';
 
 const Unauthenticated = () => {
   return (
-    <Container>
-      <LogoWrapper>
+    <S.Container>
+      <S.Logo>
         <Logo />
-      </LogoWrapper>
-
-      <WelcomeContainer>
-        <WelcomeMessage>Welcome back</WelcomeMessage>
-      </WelcomeContainer>
-
+      </S.Logo>
+      <S.Welcome>
+        <S.Message>Welcome back</S.Message>
+      </S.Welcome>
       <LoginForm />
-    </Container>
+    </S.Container>
   );
 };
 
