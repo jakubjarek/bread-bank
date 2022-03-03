@@ -30,11 +30,19 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const logIn = (userInfo: IUser) => {
     const { login, password } = userInfo;
+    const delay = (0.7 + Math.random() * 2) * 1000;
 
-    if (login === USER.login && password === USER.password) {
-      setUser({ login, password });
-      localStorage.setItem('token', JSON.stringify({ login, password }));
-    }
+    return new Promise<void>((resolve, reject): any => {
+      setTimeout(function () {
+        if (login === USER.login && password === USER.password) {
+          resolve();
+          setUser({ login, password });
+          localStorage.setItem('token', JSON.stringify({ login, password }));
+        } else {
+          reject(new Error('Invalid email or password'));
+        }
+      }, delay);
+    });
   };
 
   const logOut = () => {
