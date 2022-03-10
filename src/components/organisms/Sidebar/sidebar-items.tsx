@@ -49,12 +49,12 @@ export const authItems = [
   {
     text: 'Accounts',
     icon: <BsBank />,
-    path: 'bank-accounts',
+    path: 'accounts',
   },
   {
     text: 'Savings',
     icon: <BsPiggyBank />,
-    path: 'saving-accounts',
+    path: 'savings',
   },
   {
     text: 'History',

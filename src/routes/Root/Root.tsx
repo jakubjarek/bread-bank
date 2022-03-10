@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../../../hooks/useAuth';
-import Navigation from '../../molecules/Navigation/Navigation';
+import { useAuth } from '../../hooks/useAuth';
+import Navigation from '../../components/molecules/Navigation/Navigation';
 
 // Routes
-import AuthView from '../AuthView/AuthView';
-import UnauthView from '../UnauthView/UnauthView';
+import AuthView from '../../components/templates/AuthView/AuthView';
+import UnauthView from '../../components/templates/UnauthView/UnauthView';
 import Locations from '../Locations/Locations';
 import Loans from '../Loans/Loans';
 import Rates from '../Rates/Rates';
@@ -28,6 +28,14 @@ const Root = () => {
           <Route path="converter" element={<Converter />} />
           <Route path="contact" element={<Contact />} />
           <Route path="appointments" element={<Appointments />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
         </Routes>
       </Wrapper>
     </AppWrapper>

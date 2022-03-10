@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/templates/Root/Root';
+import Root from './routes/Root/Root';
 import { GlobalStyle } from './assets/styles/GlobalStyle';
 import AppProviders from './providers/AppProviders';
 

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { useAuth } from '../../../hooks/useAuth';
 import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
-import Spacer from '../../atoms/Divider/Divider';
+import Divider from '../../atoms/Divider/Divider';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { authItems } from './sidebar-items';
+import { NavLink } from 'react-router-dom';
 
 export const User = styled.div`
   padding: 2px 1rem;
@@ -31,10 +32,12 @@ const AuthSidebarContent = () => {
         icon={<BiLogOutCircle fill={'red'} />}
         handleClick={logOut}
       />
-      <Spacer>Account</Spacer>
+      <Divider>Account</Divider>
       <ul style={{ margin: '0', padding: '0' }}>
-        {authItems.map(({ text, icon }) => (
-          <SidebarItem key={text} text={text} icon={icon} />
+        {authItems.map(({ text, icon, path }) => (
+          <NavLink key={text} to={path}>
+            <SidebarItem text={text} icon={icon} />
+          </NavLink>
         ))}
       </ul>
     </>

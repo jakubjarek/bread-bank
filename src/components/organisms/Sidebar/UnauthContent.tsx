@@ -1,17 +1,17 @@
-import Spacer from '../../atoms/Divider/Divider';
+import { NavLink } from 'react-router-dom';
+import Divider from '../../atoms/Divider/Divider';
 import { unauthItems } from './sidebar-items';
 import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
-import { Link } from 'react-router-dom';
 
 const UnauthSidebarContent = () => {
   return (
     <>
-      <Spacer>Browse</Spacer>
+      <Divider>Browse</Divider>
       <ul style={{ margin: '0', padding: '0' }}>
         {unauthItems.map(({ text, icon, path }) => (
-          <Link key={path} to={path}>
+          <NavLink key={path} to={path}>
             <SidebarItem text={text} icon={icon} />
-          </Link>
+          </NavLink>
         ))}
       </ul>
     </>
