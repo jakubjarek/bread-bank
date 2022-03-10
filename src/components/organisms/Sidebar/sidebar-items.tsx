@@ -4,48 +4,66 @@ import { GoLocation } from 'react-icons/go';
 import { GiReceiveMoney, GiClick } from 'react-icons/gi';
 import { FaExchangeAlt } from 'react-icons/fa';
 
+import { BsBank, BsPiggyBank, BsClockHistory } from 'react-icons/bs';
+import { MdOutlineNotificationsActive } from 'react-icons/md';
+
 export const unauthItems = [
   {
     text: 'Starting Screen',
     icon: <AiOutlineHome />,
+    path: '/',
   },
   {
     text: 'See Locations',
     icon: <GoLocation />,
+    path: 'locations',
   },
   {
     text: 'Quick Loan',
     icon: <GiReceiveMoney />,
+    path: 'loans',
   },
   {
     text: 'Exchange Rates',
     icon: <FaExchangeAlt />,
+    path: 'rates',
   },
   {
     text: 'Currency Converter',
     icon: <BiCalculator />,
+    path: 'converter',
   },
   {
     text: 'Contact',
     icon: <AiOutlinePhone />,
+    path: 'contact',
   },
   {
     text: 'Make An Appointment',
     icon: <GiClick />,
+    path: 'appointments',
   },
 ];
 
 export const authItems = [
   {
-    text: 'My Account',
-    icon: '',
+    text: 'Accounts',
+    icon: <BsBank />,
+    path: 'bank-accounts',
   },
   {
-    text: 'Bank Accounts',
-    icon: '',
+    text: 'Savings',
+    icon: <BsPiggyBank />,
+    path: 'saving-accounts',
+  },
+  {
+    text: 'History',
+    icon: <BsClockHistory />,
+    path: 'history',
   },
   {
     text: 'Notifications',
-    icon: '',
+    icon: <MdOutlineNotificationsActive />,
+    path: 'notifications',
   },
 ];

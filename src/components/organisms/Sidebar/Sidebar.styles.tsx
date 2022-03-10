@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import Divider from '../../atoms/Divider/Divider';
 
 const slideIn = keyframes`
   from {
@@ -40,7 +41,6 @@ export const FixedContainer = styled.div`
   height: 100%;
   background-color: white;
   border-right: 4px solid black;
-  padding: 1.25rem 0;
   z-index: 99;
   transform: translateX(-100%);
   animation: ${slideIn} linear 200ms forwards;
@@ -49,13 +49,17 @@ export const FixedContainer = styled.div`
     transform: translateX(0%);
     animation: unset;
   }
+
+  & ${Divider} {
+    margin: 0 0.75rem;
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0.75rem;
+  padding: 1.25rem 0.75rem;
 `;
 
 export const Logo = styled.div`
@@ -72,5 +76,3 @@ export const Icons = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-

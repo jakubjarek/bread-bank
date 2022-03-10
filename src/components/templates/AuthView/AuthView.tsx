@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import SectionSpacer from '../../atoms/Spacer/Spacer';
+import Spacer from '../../atoms/Divider/Divider';
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
 `;
 
@@ -13,13 +13,12 @@ function Authenticated() {
   return (
     <Container>
       <Content>
-        <SectionSpacer style={{ maxWidth: '35%' }}>History</SectionSpacer>
+        <Spacer>History</Spacer>
         <div>
           <div>
             <p>recieved</p>
             <p>$200</p>
-            <span>from:</span> {' '}
-            <span>Jane Doe</span>
+            <span>from:</span> <span>Jane Doe</span>
           </div>
         </div>
       </Content>

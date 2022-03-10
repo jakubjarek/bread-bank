@@ -1,6 +1,6 @@
 import Logo from '../../atoms/Logo';
 import LoginForm from '../../organisms/LoginForm/LoginForm';
-import * as S from './Unauthenticated.styles';
+import * as S from './UnauthView.styles';
 
 const Unauthenticated = () => {
   return (

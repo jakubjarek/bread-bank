@@ -19,4 +19,9 @@ export const GlobalStyle = createGlobalStyle`
   a, button, input {
     font-family: 'Inter', sans-serif;
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;

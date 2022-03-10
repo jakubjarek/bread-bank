@@ -12,33 +12,35 @@ export const Icon = styled.div`
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0 0.75rem;
-`;
-
 export const Text = styled.p`
   margin: 0;
 
   font-size: ${({ theme }) => theme.fontSize.m};
   text-transform: uppercase;
-  transition: color 200ms ease-in-out;
+  transition: color 300ms ease-in-out;
 `;
 
 export const Li = styled.li`
   list-style: none;
   width: 100%;
-  padding: 0.5rem 0;
-  cursor: pointer;
-  transition: background-color 200ms ease-in-out;
 
   :not(:last-of-type) {
     margin-bottom: 4px;
   }
+`;
 
-  &:hover {
+export const Container = styled.button`
+  border: none;
+  background: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 300ms ease-in-out;
+  cursor: pointer;
+
+  &:hover, &:focus {
     background-color: black;
 
     & ${Icon} {

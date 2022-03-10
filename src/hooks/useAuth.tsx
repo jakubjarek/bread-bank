@@ -32,7 +32,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { login, password } = userInfo;
     const delay = (0.7 + Math.random() * 2) * 1000;
 
-    return new Promise<void>((resolve, reject): any => {
+    return new Promise<void>((resolve, reject) => {
       setTimeout(function () {
         if (login === USER.login && password === USER.password) {
           resolve();
