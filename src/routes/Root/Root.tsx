@@ -12,6 +12,7 @@ import Rates from '../Rates/Rates';
 import Converter from '../Converter/Converter';
 import Contact from '../Contact/Contact';
 import Appointments from '../Appointments/Appointments';
+import Savings from '../Savings/Savings';
 
 const Root = () => {
   const auth = useAuth();
@@ -28,6 +29,7 @@ const Root = () => {
           <Route path="converter" element={<Converter />} />
           <Route path="contact" element={<Contact />} />
           <Route path="appointments" element={<Appointments />} />
+          <Route path="savings" element={<Savings />}></Route>
           <Route
             path="*"
             element={
