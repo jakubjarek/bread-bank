@@ -1,3 +1,4 @@
+import { useSidebar } from '../../organisms/Sidebar/useSidebar';
 import * as S from './SidebarItem.styled';
 
 type Props = {
@@ -7,8 +8,15 @@ type Props = {
 };
 
 const SidebarItem = ({ icon, text, handleLogout }: Props) => {
+  const { closeSidebar } = useSidebar();
+
+  const handleClick = () => {
+    handleLogout();
+    closeSidebar();
+  };
+
   return (
-    <S.LogoutLi onClick={handleLogout}>
+    <S.LogoutLi onClick={handleClick}>
       <S.Container>
         <S.Icon>{icon}</S.Icon>
         <S.Text>{text}</S.Text>

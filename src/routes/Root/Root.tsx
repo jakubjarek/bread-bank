@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import Navigation from '../../components/molecules/Navigation/Navigation';
+import { SidebarProvider } from '../../components/organisms/Sidebar/useSidebar';
 
 import Routes from '../Routes';
 
 const Root = () => {
   return (
     <AppWrapper>
-      <Navigation />
+      <SidebarProvider>
+        <Navigation />
+      </SidebarProvider>
       <Wrapper>
         <Routes />
       </Wrapper>
