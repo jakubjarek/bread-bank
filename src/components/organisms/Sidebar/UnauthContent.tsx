@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import Divider from '../../atoms/Divider/Divider';
 import { unauthItems } from './sidebar-items';
 import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
@@ -9,9 +8,7 @@ const UnauthSidebarContent = () => {
       <Divider>Browse</Divider>
       <ul style={{ margin: '0', padding: '0' }}>
         {unauthItems.map(({ text, icon, path }) => (
-          <NavLink key={path} to={path}>
-            <SidebarItem text={text} icon={icon} />
-          </NavLink>
+          <SidebarItem key={text} text={text} icon={icon} navigateTo={path} />
         ))}
       </ul>
     </>

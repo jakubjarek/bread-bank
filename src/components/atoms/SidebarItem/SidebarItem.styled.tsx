@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Icon = styled.div`
   display: flex;
@@ -29,9 +30,7 @@ export const Li = styled.li`
   }
 `;
 
-export const Container = styled.button`
-  border: none;
-  background: none;
+export const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -40,18 +39,39 @@ export const Container = styled.button`
   padding: 0.5rem 0.75rem;
   transition: background-color 300ms ease-in-out;
   cursor: pointer;
+`;
 
-  &:hover, &:focus {
-    background-color: black;
+export const StyledNavLink = styled(NavLink)`
+  &.active {
+    ${Container} {
+      background-color: black;
+    }
 
-    & ${Icon} {
+    ${Text} {
+      color: white;
+    }
+
+    ${Icon} {
       svg {
         fill: white;
       }
     }
+  }
 
-    & ${Text} {
+  &:hover,
+  &:focus {
+    ${Container} {
+      background-color: black;
+    }
+
+    ${Text} {
       color: white;
+    }
+
+    ${Icon} {
+      svg {
+        fill: white;
+      }
     }
   }
 `;

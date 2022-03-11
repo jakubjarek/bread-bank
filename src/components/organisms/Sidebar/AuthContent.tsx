@@ -4,7 +4,7 @@ import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
 import Divider from '../../atoms/Divider/Divider';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { authItems } from './sidebar-items';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const User = styled.div`
   padding: 2px 1rem;
@@ -37,13 +37,12 @@ const AuthSidebarContent = () => {
         text={'Log Out'}
         icon={<BiLogOutCircle fill={'red'} />}
         handleClick={handleLogout}
+        navigateTo="/"
       />
       <Divider>Account</Divider>
       <ul style={{ margin: '0', padding: '0' }}>
         {authItems.map(({ text, icon, path }) => (
-          <NavLink key={text} to={path}>
-            <SidebarItem text={text} icon={icon} />
-          </NavLink>
+          <SidebarItem key={text} text={text} icon={icon} navigateTo={path} />
         ))}
       </ul>
     </>
