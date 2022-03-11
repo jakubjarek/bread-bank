@@ -5,7 +5,7 @@ import NormalizeStyle from '../assets/styles/NormalizeStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from '../assets/styles/theme';
 
-const AppProviders: React.FC = ({ children }) => {
+const AppProviders = ({ children }: { children: JSX.Element }) => {
   return (
     <Router>
       <AuthProvider>
