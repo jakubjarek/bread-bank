@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  padding: 0.5rem;
-`;
+
 
 export const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 `;
 
 export const Welcome = styled.div`

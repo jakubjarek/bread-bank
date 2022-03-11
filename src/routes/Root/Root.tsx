@@ -30,4 +30,6 @@ const AppWrapper = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   max-width: 35rem;
+  margin-top: 2rem;
+  padding: 0.5rem;
 `;

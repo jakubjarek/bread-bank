@@ -36,6 +36,7 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin: 3px 0;
   padding: 0.5rem 0.75rem;
   transition: background-color 300ms ease-in-out;
   cursor: pointer;
