@@ -17,9 +17,14 @@ const Root = () => {
 export default Root;
 
 const AppWrapper = styled.div`
-  margin-left: 350px; // sidebar width
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: 910px) {
+    margin-left: 350px;
+  }
 `;
 
 const Wrapper = styled.div`
