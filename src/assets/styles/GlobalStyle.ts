@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
   }
@@ -10,8 +10,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    margin: 0;
-    padding: 0;
     overflow-y: hidden;
     font-family: 'Inter', sans-serif;
   }
@@ -25,3 +23,5 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 `;
+
+export default GlobalStyle;
