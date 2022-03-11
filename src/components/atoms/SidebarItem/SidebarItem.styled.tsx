@@ -75,3 +75,22 @@ export const StyledNavLink = styled(NavLink)`
     }
   }
 `;
+
+export const LogoutLi = styled(Li)`
+  &:hover,
+  &:focus {
+    ${Container} {
+      background-color: black;
+    }
+
+    ${Text} {
+      color: white;
+    }
+
+    ${Icon} {
+      svg {
+        fill: white;
+      }
+    }
+  }
+`;

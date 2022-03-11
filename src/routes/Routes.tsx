@@ -68,7 +68,7 @@ const Routes = () => {
           </main>
         }
       />
-    </RouterRoutes> 
+    </RouterRoutes>
   );
 };
 

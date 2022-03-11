@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useAuth } from '../../../hooks/useAuth';
 import SidebarItem from '../../atoms/SidebarItem/SidebarItem';
+import SidebarItemLogout from '../../atoms/SidebarItem/SidebarItemLogout';
 import Divider from '../../atoms/Divider/Divider';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { authItems } from './sidebar-items';
@@ -33,11 +34,10 @@ const AuthSidebarContent = () => {
         <p>JOHN DOE</p>
         <p>Balance: $30.213,31</p>
       </User>
-      <SidebarItem
+      <SidebarItemLogout
         text={'Log Out'}
         icon={<BiLogOutCircle fill={'red'} />}
-        handleClick={handleLogout}
-        navigateTo="/"
+        handleLogout={handleLogout}
       />
       <Divider>Account</Divider>
       <ul style={{ margin: '0', padding: '0' }}>

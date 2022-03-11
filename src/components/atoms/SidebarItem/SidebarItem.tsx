@@ -4,12 +4,11 @@ type Props = {
   icon: React.ReactNode;
   text: string;
   navigateTo: string;
-  handleClick?: () => void;
 };
 
-const SidebarItem = ({ icon, text, navigateTo, handleClick }: Props) => {
+const SidebarItem = ({ icon, text, navigateTo }: Props) => {
   return (
-    <S.Li onClick={handleClick}>
+    <S.Li>
       <S.StyledNavLink to={navigateTo}>
         <S.Container>
           <S.Icon>{icon}</S.Icon>
