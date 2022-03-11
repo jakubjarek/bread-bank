@@ -45,7 +45,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   flex: 1;
-  padding: 8px 4px;
+  padding: 6px 2px;
 
   &::placeholder {
     font-weight: 600;
