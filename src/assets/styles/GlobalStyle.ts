@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    overflow-y: hidden;
     font-family: 'Inter', sans-serif;
   }
   
