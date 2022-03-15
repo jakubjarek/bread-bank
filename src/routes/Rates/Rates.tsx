@@ -5,54 +5,83 @@ const SYMBOLS = ` PLN,USD,GBP,CHF,AUD,CAD,CZK,DKK,HUF,JPY,NOK,RUB,SEK`;
 const DECIMAL_PLACES = 3;
 
 const Rates = () => {
-  const [rates, setRates] = useState({});
+  const [rates, setRates] = useState<{ [key: string]: string }>({});
+  const [date, setDate] = useState('');
 
   useEffect(() => {
     const getRates = async () => {
-      const fetchedData = await (
-        await fetch(
-          `https://api.exchangerate.host/latest?symbols=${SYMBOLS}&places=${DECIMAL_PLACES}`
-        )
-      ).json();
-      setRates(fetchedData.rates);
+      try {
+        const fetchedData = await (
+          await fetch(
+            `https://api.exchangerate.host/latest?symbols=${SYMBOLS}&places=${DECIMAL_PLACES}`
+          )
+        ).json();
+        setRates(fetchedData.rates);
+        setDate(fetchedData.date);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getRates();
   }, []);
 
-  const keys = Object.keys(rates);
-  const values: string[] = Object.values(rates);
-
   return (
     <div>
-      <h1>Exchange Rates</h1>
-      <FlexContainer>
-        <FlexChild>
+      <h1 style={{ marginTop: '0' }}>Our Exchange Rates</h1>
+      <SubheadBar>
+        <p>{date}</p>
+        <a href="https://exchangerate.host/#/">exchangerate.host</a>
+      </SubheadBar>
+      <Container>
+        <Column>
           <h2>Currencies</h2>
-          {keys.map((r) => (
-            <p key={r}>{r}</p>
+          {Object.keys(rates).map((r) => (
+            <p key={r}>1 {r}</p>
           ))}
-        </FlexChild>
-        <FlexChild>
+        </Column>
+        <Column>
           <h2>Euro</h2>
-          {values.map((r) => (
+          {Object.values(rates).map((r) => (
             <p key={r}>{r}</p>
           ))}
-        </FlexChild>
-      </FlexContainer>
+        </Column>
+      </Container>
     </div>
   );
 };
 
 export default Rates;
 
-const FlexContainer = styled.div`
+const SubheadBar = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  color: white;
+  background-color: black;
+  padding: 0.5rem 0.75rem;
+
+  & p {
+    margin: 0;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+`;
+
+const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const FlexChild = styled.div`
+const Column = styled.div`
   flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
