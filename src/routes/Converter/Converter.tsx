@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as S from './Converter.styles';
 
 const SYMBOLS = `EUR,PLN,USD,GBP,CHF,AUD,CAD,CZK,DKK,HUF,JPY,NOK,RUB,SEK`;
 const DECIMAL_PLACES = 2;
@@ -98,44 +99,44 @@ const Converter = () => {
   return (
     <div>
       <h1>Currency Converter</h1>
+      <S.Wrapper>
+        <S.Column>
+          <S.Input
+            type="number"
+            name="value.first"
+            value={values['value.first']}
+            onChange={handleInputChange}
+          />
+          <S.Input
+            type="number"
+            name="value.second"
+            value={values['value.second']}
+            onChange={handleInputChange}
+          />
+        </S.Column>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <input
-          style={{ marginRight: '0.5rem' }}
-          type="number"
-          name="value.first"
-          value={values['value.first']}
-          onChange={handleInputChange}
-        />
-        <select
-          name="symbol.first"
-          value={values['symbol.first']}
-          onChange={handleInputChange}
-        >
-          {Object.keys(rates).map((r) => (
-            <option key={r}>{r}</option>
-          ))}
-        </select>
-      </div>
+        <S.Column>
+          <S.Select
+            name="symbol.first"
+            value={values['symbol.first']}
+            onChange={handleInputChange}
+          >
+            {Object.keys(rates).map((r) => (
+              <option key={r}>{r}</option>
+            ))}
+          </S.Select>
 
-      <div>
-        <input
-          style={{ marginRight: '0.5rem' }}
-          type="number"
-          name="value.second"
-          value={values['value.second']}
-          onChange={handleInputChange}
-        />
-        <select
-          name="symbol.second"
-          value={values['symbol.second']}
-          onChange={handleInputChange}
-        >
-          {Object.keys(rates).map((r) => (
-            <option key={r}>{r}</option>
-          ))}
-        </select>
-      </div>
+          <S.Select
+            name="symbol.second"
+            value={values['symbol.second']}
+            onChange={handleInputChange}
+          >
+            {Object.keys(rates).map((r) => (
+              <option key={r}>{r}</option>
+            ))}
+          </S.Select>
+        </S.Column>
+      </S.Wrapper>
     </div>
   );
 };
