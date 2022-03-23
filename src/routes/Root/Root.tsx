@@ -35,4 +35,7 @@ const Wrapper = styled.div`
   max-width: 35rem;
   margin-top: 2rem;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

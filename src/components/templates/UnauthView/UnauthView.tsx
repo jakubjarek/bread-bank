@@ -4,7 +4,7 @@ import * as S from './UnauthView.styles';
 
 const Unauthenticated = () => {
   return (
-    <>
+    <div style={{ width: '100%' }}>
       <S.Logo>
         <Logo />
       </S.Logo>
@@ -12,7 +12,7 @@ const Unauthenticated = () => {
         <S.Message>Welcome back</S.Message>
       </S.Welcome>
       <LoginForm />
-    </>
+    </div>
   );
 };
 
