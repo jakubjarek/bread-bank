@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import RouteHeading from '../../components/atoms/RouteHeading/RouteHeading';
+import useExchangeRates from '../../hooks/useExchangeRates';
 import * as S from './Converter.styles';
-
-const SYMBOLS = `EUR,PLN,USD,GBP,CHF,AUD,CAD,CZK,DKK,HUF,JPY,NOK,RUB,SEK`;
-const DECIMAL_PLACES = 2;
 
 // not really accurate
 const toTwoDecimals = (num: number) => Number(num.toFixed(2));
@@ -16,33 +15,13 @@ interface IState {
 }
 
 const Converter = () => {
-  const [rates, setRates] = useState<{ [key: string]: number }>({});
+  const { rates, error } = useExchangeRates();
   const [values, setValues] = useState<IState>({
     'value.first': 1,
     'value.second': 1,
     'symbol.first': 'EUR',
-    'symbol.second': 'USD',
+    'symbol.second': 'EUR',
   });
-
-  useEffect(() => {
-    const getRates = async () => {
-      try {
-        const fetchedData = await (
-          await fetch(
-            `https://api.exchangerate.host/latest?symbols=${SYMBOLS}&places=${DECIMAL_PLACES}`
-          )
-        ).json();
-
-        const dataRates = fetchedData.rates;
-        setRates(dataRates);
-        setValues((p) => ({ ...p, 'value.second': dataRates['USD'] }));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getRates();
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { value, name } = e.target;
@@ -98,45 +77,50 @@ const Converter = () => {
 
   return (
     <div>
-      <h1>Currency Converter</h1>
-      <S.Wrapper>
-        <S.Column>
-          <S.Input
-            type="number"
-            name="value.first"
-            value={values['value.first']}
-            onChange={handleInputChange}
-          />
-          <S.Input
-            type="number"
-            name="value.second"
-            value={values['value.second']}
-            onChange={handleInputChange}
-          />
-        </S.Column>
+      <RouteHeading>Currency Converter</RouteHeading>
 
-        <S.Column>
-          <S.Select
-            name="symbol.first"
-            value={values['symbol.first']}
-            onChange={handleInputChange}
-          >
-            {Object.keys(rates).map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </S.Select>
+      {error ? (
+        <p>Something went wrong...</p>
+      ) : (
+        <S.Wrapper>
+          <S.Column>
+            <S.Input
+              type="number"
+              name="value.first"
+              value={values['value.first']}
+              onChange={handleInputChange}
+            />
+            <S.Input
+              type="number"
+              name="value.second"
+              value={values['value.second']}
+              onChange={handleInputChange}
+            />
+          </S.Column>
 
-          <S.Select
-            name="symbol.second"
-            value={values['symbol.second']}
-            onChange={handleInputChange}
-          >
-            {Object.keys(rates).map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </S.Select>
-        </S.Column>
-      </S.Wrapper>
+          <S.Column>
+            <S.Select
+              name="symbol.first"
+              value={values['symbol.first']}
+              onChange={handleInputChange}
+            >
+              {Object.keys(rates).map((r) => (
+                <option key={r}>{r}</option>
+              ))}
+            </S.Select>
+
+            <S.Select
+              name="symbol.second"
+              value={values['symbol.second']}
+              onChange={handleInputChange}
+            >
+              {Object.keys(rates).map((r) => (
+                <option key={r}>{r}</option>
+              ))}
+            </S.Select>
+          </S.Column>
+        </S.Wrapper>
+      )}
     </div>
   );
 };
