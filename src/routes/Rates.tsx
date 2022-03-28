@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useExchangeRates from '../shared/hooks/useExchangeRates';
+import useExchangeRates from 'shared/hooks/useExchangeRates';
 
 const Rates = () => {
   const { rates, error } = useExchangeRates();

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Auth/useAuth';
+import { useAuth } from 'Auth/useAuth';
 
 import SidebarItem from './Item/SidebarItem';
 import SidebarItemLogout from './SidebarItemLogout';
-import Divider from '../../shared/components/Divider';
+import Divider from 'shared/components/Divider';
 
 import { BiLogOutCircle } from 'react-icons/bi';
 import { authItems } from './sidebar-items';

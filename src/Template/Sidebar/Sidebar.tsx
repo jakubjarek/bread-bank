@@ -1,13 +1,13 @@
-import { useAuth } from '../../Auth/useAuth';
-import useWindowWidth from '../../shared/hooks/useWindowWidth';
-import Logo from '../../shared/components/Logo';
+import { useAuth } from 'Auth/useAuth';
+import useWindowWidth from 'shared/hooks/useWindowWidth';
+import Logo from 'shared/components/Logo';
 import SidebarButton from './Button/SidebarButton';
 import AuthSidebarContent from './AuthContent';
 import { MdOutlineNotificationsActive } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
 import * as S from './Sidebar.styles';
 
-import Divider from '../../shared/components/Divider';
+import Divider from 'shared/components/Divider';
 import { unauthItems } from './sidebar-items';
 import SidebarItem from './Item/SidebarItem';
 

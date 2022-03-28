@@ -1,10 +1,10 @@
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-import useWindowWidth from '../../shared/hooks/useWindowWidth';
+import useWindowWidth from 'shared/hooks/useWindowWidth';
 import { useSidebar } from '../Sidebar/useSidebar';
 
-import Hamburger from '../../shared/components/Hamburger/Hamburger';
+import Hamburger from 'shared/components/Hamburger/Hamburger';
 import Sidebar from '../Sidebar/Sidebar';
 
 function Navigation() {

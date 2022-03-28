@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useExchangeRates from '../shared/hooks/useExchangeRates';
+import useExchangeRates from 'shared/hooks/useExchangeRates';
 import * as S from './Converter.styles';
 
 // not really accurate

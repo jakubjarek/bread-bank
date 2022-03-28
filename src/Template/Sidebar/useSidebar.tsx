@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import useWindowWidth from '../../shared/hooks/useWindowWidth';
+import useWindowWidth from 'shared/hooks/useWindowWidth';
 
 type SidebarContextType = {
   isOpen: boolean;

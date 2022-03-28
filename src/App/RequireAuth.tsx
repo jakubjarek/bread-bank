@@ -1,4 +1,4 @@
-import { useAuth } from '../Auth/useAuth';
+import { useAuth } from 'Auth/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
 
 // Taken from react-router docs example.

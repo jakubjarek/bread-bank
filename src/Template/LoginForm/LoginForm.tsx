@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useAuth } from '../../Auth/useAuth';
-import Spinner from '../../shared/components/Spinner';
-import Input from '../../shared/components/Input/Input';
+
+import { useAuth } from 'Auth/useAuth';
 import * as S from './LoginForm.styles';
+
+import Spinner from 'shared/components/Spinner';
+import Input from 'shared/components/Input/Input';
 
 function LoginForm() {
   const [usernameValidity, setUsernameValidity] = useState({ invalid: false, message: '' });

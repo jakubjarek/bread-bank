@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import Divider from '../../shared/components/Divider';
+import Divider from 'shared/components/Divider';
 
 const slideIn = keyframes`
   from {
