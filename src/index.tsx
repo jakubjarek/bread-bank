@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './routes/Root/Root';
-import AppProviders from './providers/AppProviders';
+
+import App from './App/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppProviders>
-      <Root />
-    </AppProviders>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
