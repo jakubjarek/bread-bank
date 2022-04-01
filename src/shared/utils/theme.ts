@@ -3,10 +3,11 @@ import { DefaultTheme } from "styled-components";
 export const theme: DefaultTheme = {
   color: {
     white: '#ffffff',
-    lightGray: '#f7f7f7',
+    lightGray: '#f5f5f5',
     gray: '#858585',
-    black: '#111111',
+    black: '#000d26',
     red: '#e30000',
+    green: '#199c3c',
     backdropLight: '#00000022',
     backdropDark: '#00000077',
     buttonDisabled: '#adadad',
@@ -19,7 +20,7 @@ export const theme: DefaultTheme = {
     s: '12px',
   },
   size: {
-    sidebar: '350px',
+    sidebar: '300px',
   },
   shadow: {
     border: `inset 0 0 0 2px #111111`,

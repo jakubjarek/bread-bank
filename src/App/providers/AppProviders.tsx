@@ -10,9 +10,11 @@ const AppProviders = ({ children }: { children: JSX.Element }) => {
   return (
     <Router>
       <AuthProvider>
-        <GlobalStyle />
-        <NormalizeStyle />
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <NormalizeStyle />
+          {children}
+        </ThemeProvider>
       </AuthProvider>
     </Router>
   );

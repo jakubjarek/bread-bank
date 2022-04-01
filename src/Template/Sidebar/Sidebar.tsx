@@ -1,23 +1,43 @@
+import { useNavigate } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
+
+import { unauthItems, authItems } from './sidebar-items';
 import { useAuth } from 'Auth/useAuth';
 import useWindowWidth from 'shared/hooks/useWindowWidth';
-import Logo from 'shared/components/Logo';
-import SidebarButton from './Button/SidebarButton';
-import AuthSidebarContent from './AuthContent';
-import { MdOutlineNotificationsActive } from 'react-icons/md';
-import { FiSettings } from 'react-icons/fi';
 import * as S from './Sidebar.styles';
 
-import Divider from 'shared/components/Divider';
-import { unauthItems } from './sidebar-items';
 import SidebarItem from './Item/SidebarItem';
+import SidebarButton from './Button/SidebarButton';
+import Logout from './Item/Logout';
+import Divider from 'shared/components/Divider';
+import Logo from 'shared/components/Logo';
 
 interface IProps {
   handleClose?: () => void;
 }
 
 function Sidebar({ handleClose }: IProps) {
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user, logOut } = useAuth();
   const windowWidth = useWindowWidth();
+
+  const handleLogout = () => {
+    logOut();
+    navigate('/');
+  };
+
+  const AuthenticatedContent = (
+    <>
+      <Logout handleLogout={handleLogout} />
+      <Divider>Account</Divider>
+      <ul>
+        {authItems.map(({ text, icon, path }) => (
+          <SidebarItem key={text} text={text} icon={icon} navigateTo={path} />
+        ))}
+      </ul>
+      <Divider />
+    </>
+  );
 
   return (
     <>
@@ -26,13 +46,9 @@ function Sidebar({ handleClose }: IProps) {
           <S.Logo>
             <Logo />
           </S.Logo>
-          <S.Icons>
-            <SidebarButton icon={<MdOutlineNotificationsActive />} notificationCount={5} />
-            <SidebarButton icon={<FiSettings />} />
-          </S.Icons>
+          <SidebarButton icon={<FiSettings />} />
         </S.Header>
-        {user ? <AuthSidebarContent /> : null}
-        <Divider>Browse</Divider>
+        {user ? AuthenticatedContent : null}
         <ul>
           {unauthItems.map(({ text, icon, path }) => (
             <SidebarItem key={text} text={text} icon={icon} navigateTo={path} />

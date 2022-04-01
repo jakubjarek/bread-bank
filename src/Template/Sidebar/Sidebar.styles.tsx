@@ -34,6 +34,7 @@ export const Backdrop = styled.div`
 `;
 
 export const FixedContainer = styled.div`
+  padding: 2.5rem 0.75rem;
   overflow-y: auto;
   position: fixed;
   top: 0;
@@ -41,7 +42,8 @@ export const FixedContainer = styled.div`
   max-width: ${({ theme }) => theme.size.sidebar};
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightGray};
-  border-right: 2px solid ${({ theme }) => theme.color.black};
+  /* border-right: 2px solid ${({ theme }) => theme.color.black}; */
+  border-right: 1px solid #e1e4e6;
   z-index: 99;
   transform: translateX(-100%);
   animation: ${slideIn} linear 200ms forwards;
@@ -52,12 +54,13 @@ export const FixedContainer = styled.div`
   }
 
   ${Divider} {
-    margin: 0 0.75rem;
+    margin: 0.5rem 0;
   }
 `;
 
 export const Header = styled.div`
-  padding: 1.25rem 0.75rem;
+  padding: 0 0.5rem;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
