@@ -1,5 +1,7 @@
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
+import { AiFillGithub } from 'react-icons/ai';
 
 import { unauthItems, authItems } from './sidebar-items';
 import { useAuth } from 'Auth/useAuth';
@@ -54,6 +56,15 @@ function Sidebar({ handleClose }: IProps) {
             <SidebarItem key={text} text={text} icon={icon} navigateTo={path} />
           ))}
         </ul>
+        <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'center' }}>
+          <RepoLink
+            href="https://github.com/jakubjarek/bread-bank"
+            rel="norefferer"
+            target="_blank"
+          >
+            <AiFillGithub /> Github repo
+          </RepoLink>
+        </div>
       </S.FixedContainer>
       {windowWidth < 910 ? <S.Backdrop onClick={handleClose}></S.Backdrop> : null}
     </>
@@ -61,3 +72,19 @@ function Sidebar({ handleClose }: IProps) {
 }
 
 export default Sidebar;
+
+const RepoLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  width: 50%;
+  background: #e7e7e7;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+  color: ${({ theme }) => theme.color.black};
+  font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSize.m};
+`;

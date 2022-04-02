@@ -34,6 +34,8 @@ export const Backdrop = styled.div`
 `;
 
 export const FixedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 2.5rem 0.75rem;
   overflow-y: auto;
   position: fixed;
