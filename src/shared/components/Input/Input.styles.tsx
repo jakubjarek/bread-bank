@@ -52,7 +52,7 @@ export const Input = styled.input`
 
   &::placeholder {
     font-weight: 600;
-    color: ${({ theme: { color } }) => color.grey};
+    color: ${({ theme: { color } }) => color.gray};
   }
 `;
 
