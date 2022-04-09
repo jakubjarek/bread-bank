@@ -28,6 +28,6 @@ const AppWrapper = styled.div`
   align-items: center;
 
   @media screen and (min-width: 910px) {
-    margin-left: 350px;
+    margin-left: ${({ theme }) => theme.size.sidebar};
   }
 `;
