@@ -46,10 +46,8 @@ export const Container = styled.div`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  // added when the route is active
-  &.active,
-  &:hover,
-  &:focus {
+  // react-router adds class 'active' to the element
+  &.active {
     ${Container} {
       background-color: ${({ theme }) => theme.color.black};
     }
@@ -62,6 +60,13 @@ export const StyledNavLink = styled(NavLink)`
       svg {
         fill: ${({ theme }) => theme.color.white};
       }
+    }
+  }
+
+  &:hover:not(.active),
+  &:focus:not(.active) {
+    ${Container} {
+      background-color: #e7e7e7;
     }
   }
 `;
