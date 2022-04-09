@@ -10,7 +10,7 @@ export const Icon = styled.div`
     width: 20px;
     height: 20px;
     fill: currentColor;
-    transition: fill 200ms ease-in-out;
+    transition: fill 250ms ease-in-out;
   }
 `;
 
@@ -19,7 +19,7 @@ export const Text = styled.p`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: 500;
   color: inheit;
-  transition: color 300ms ease-in-out;
+  transition: color 250ms ease-in-out;
 `;
 
 export const Li = styled.li`
@@ -34,16 +34,14 @@ export const Li = styled.li`
 export const Container = styled.div`
   // sets the color of icon and text
   color: ${({ theme }) => theme.color.black};
-
-  padding: 0.75rem 0.5rem;
-  border-radius: 5px;
-
   width: 100%;
   margin: 3px 0;
+  padding: 0.75rem 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  transition: background-color 300ms ease-in-out;
+  border-radius: 5px;
+  transition: background-color 250ms ease-in-out;
   cursor: pointer;
 `;
 
