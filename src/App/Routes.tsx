@@ -2,14 +2,12 @@ import { Routes as RouterRoutes, Route } from 'react-router-dom';
 import { useAuth } from 'Auth/useAuth';
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
 
-import AuthView from './views/AuthView';
-import UnauthView from './views/UnauthView';
-
+import Authenticated from 'views/Authenticated/Authenticated';
+import Unauthenticated from 'views/Unauthenticated/Unauthenticated';
 import Rates from 'views/Rates';
 import Converter from 'views/Converter';
 import Contact from 'views/Contact';
 import Savings from 'views/Savings';
-
 import History from 'views/History/History';
 
 const Routes = () => {
@@ -17,7 +15,7 @@ const Routes = () => {
 
   return (
     <RouterRoutes>
-      <Route path="/" element={auth.user ? <AuthView /> : <UnauthView />} />
+      <Route path="/" element={auth.user ? <Authenticated /> : <Unauthenticated />} />
       <Route path="rates" element={<Rates />} />
       <Route path="converter" element={<Converter />} />
       <Route path="contact" element={<Contact />} />

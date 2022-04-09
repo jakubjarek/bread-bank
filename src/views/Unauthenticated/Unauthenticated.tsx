@@ -1,6 +1,6 @@
 import Logo from '../../shared/components/Logo';
 import LoginForm from '../../Template/LoginForm/LoginForm';
-import * as S from './UnauthView.styles';
+import * as S from './Unauthenticated.styles';
 
 const Unauthenticated = () => {
   return (
