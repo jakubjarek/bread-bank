@@ -1,23 +1,28 @@
 import * as S from './Transaction.styles';
-
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { RiMoreFill } from 'react-icons/ri';
 
-const Transaction = () => {
-  // remove after passing transaction data as a prop
-  const received = false;
+export interface TransactionType {
+  id: string;
+  received: boolean;
+  amount: number;
+  receiver: string;
+  sender: string;
+}
 
-  const icon = received ? <BsArrowLeft size={14} /> : <BsArrowRight size={14} />;
-
+const Transaction = ({ id, received, amount, receiver, sender }: TransactionType) => {
   return (
     <S.Container title="Show transaction details">
       <S.Row>
-        <S.Amount received={received}>{received ? '' : '-'}45,00 EUR</S.Amount>
+        <S.Amount received={received}>
+          {!received && '-'}
+          {amount} EUR
+        </S.Amount>
         <RiMoreFill />
       </S.Row>
       <S.Participant>
-        {icon}
-        Gabe Newell
+        {received ? <BsArrowLeft size={14} /> : <BsArrowRight size={14} />}
+        {received ? sender : receiver}
       </S.Participant>
     </S.Container>
   );

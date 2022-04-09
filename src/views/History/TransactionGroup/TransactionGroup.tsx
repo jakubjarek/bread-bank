@@ -1,9 +1,12 @@
 import * as S from './TransactionGroup.styles';
+import { TransactionType } from '../Transaction/Transaction';
 
-// it should take 2 props:
-// - date
-// - array of transactions
-const TransactionGroup = () => {
+interface IProps {
+  date: string;
+  transactions: TransactionType[];
+}
+
+const TransactionGroup = ({ date, transactions }: IProps) => {
   return (
     <S.Container>
       <S.DateColumn>
