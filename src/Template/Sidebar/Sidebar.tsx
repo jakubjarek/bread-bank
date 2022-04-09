@@ -80,7 +80,7 @@ const RepoLink = styled.a`
   gap: 6px;
 
   width: 50%;
-  background: #e7e7e7;
+  background: ${({ theme }) => theme.color.lighterGray};
   text-align: center;
   padding: 0.5rem 0;
   border-radius: 5px;

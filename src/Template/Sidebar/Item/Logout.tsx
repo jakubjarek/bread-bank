@@ -32,7 +32,7 @@ export default Logout;
 
 const Wrapper = styled.div`
   border-radius: 5px;
-  background-color: #e7e7e7;
+  background-color: ${({ theme }) => theme.color.lighterGray};
 `;
 
 const LogoutIcon = styled(Icon)`

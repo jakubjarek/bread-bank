@@ -66,7 +66,7 @@ export const StyledNavLink = styled(NavLink)`
   &:hover:not(.active),
   &:focus:not(.active) {
     ${Container} {
-      background-color: #e7e7e7;
+      background-color: ${({ theme }) => theme.color.lighterGray};
     }
   }
 `;
