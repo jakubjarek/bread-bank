@@ -17,7 +17,7 @@ export default RouteTemplate;
 const Container = styled.div`
   width: 100%;
   max-width: 35rem;
-  margin-top: 2rem;
+  margin-top: 72px;
   padding: 0.5rem;
   display: flex;
   align-items: center;

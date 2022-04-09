@@ -5,12 +5,12 @@ import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import AuthView from './views/AuthView';
 import UnauthView from './views/UnauthView';
 
-import Rates from 'routes/Rates';
-import Converter from 'routes/Converter';
-import Contact from 'routes/Contact';
-import Savings from 'routes/Savings';
+import Rates from 'views/Rates';
+import Converter from 'views/Converter';
+import Contact from 'views/Contact';
+import Savings from 'views/Savings';
 
-import History from 'routes/History/History';
+import History from 'views/History/History';
 
 const Routes = () => {
   const auth = useAuth();
