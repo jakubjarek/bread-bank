@@ -1,7 +1,7 @@
 import { BiCalculator } from 'react-icons/bi';
 import { AiOutlineHome, AiOutlinePhone } from 'react-icons/ai';
 import { FaExchangeAlt } from 'react-icons/fa';
-import { BsBank, BsPiggyBank, BsClockHistory } from 'react-icons/bs';
+import { BsPiggyBank, BsClockHistory } from 'react-icons/bs';
 
 export const unauthItems = [
   {
@@ -27,11 +27,6 @@ export const unauthItems = [
 ];
 
 export const authItems = [
-  {
-    text: 'Accounts',
-    icon: <BsBank />,
-    path: 'accounts',
-  },
   {
     text: 'Savings',
     icon: <BsPiggyBank />,

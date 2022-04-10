@@ -1,4 +1,4 @@
-import { theme } from '../utils/theme';
+import { theme } from 'App/theme/theme';
 
 interface IProps {
   size?: string;
