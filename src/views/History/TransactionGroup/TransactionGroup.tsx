@@ -1,5 +1,6 @@
 import * as S from './TransactionGroup.styles';
-import { TransactionType } from '../Transaction/Transaction';
+import Transaction, { TransactionType } from '../Transaction/Transaction';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   date: string;
@@ -17,7 +18,19 @@ const TransactionGroup = ({ date, transactions }: IProps) => {
         </S.Date>
         <S.VerticalBar />
       </S.DateColumn>
-      <S.TransactionsColumn>{/* transactions go here */}</S.TransactionsColumn>
+      <S.TransactionsColumn>
+        {transactions.map((t) => (
+          <Link key={t.id} to={`transactions/${t.id}`}>
+            <Transaction
+              id={t.id}
+              received={t.received}
+              amount={t.amount}
+              receiver={t.receiver}
+              sender={t.sender}
+            />
+          </Link>
+        ))}
+      </S.TransactionsColumn>
     </S.Container>
   );
 };

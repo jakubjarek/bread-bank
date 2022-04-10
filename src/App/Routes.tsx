@@ -9,6 +9,7 @@ import Converter from 'views/Converter';
 import Contact from 'views/Contact';
 import Savings from 'views/Savings';
 import History from 'views/History/History';
+import TransactionDetails from 'views/History/TransactionDetails/TransactionDetails';
 
 const Routes = () => {
   const auth = useAuth();
@@ -23,7 +24,9 @@ const Routes = () => {
       {/* protected routes */}
       <Route element={<RequireAuth />}>
         <Route path="savings" element={<Savings />} />
-        <Route path="history" element={<History />} />
+        <Route path="history" element={<History />}>
+          <Route path="transactions/:transactionId" element={<TransactionDetails />} />
+        </Route>
       </Route>
 
       {/* no match route */}
