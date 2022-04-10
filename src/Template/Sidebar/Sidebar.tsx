@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { AiFillGithub } from 'react-icons/ai';
 
+import { toMoneyString } from 'shared/utils/toMoneyString';
 import { unauthItems, authItems } from './sidebar-items';
 import { useAuth } from 'Auth/useAuth';
 import useWindowWidth from 'shared/hooks/useWindowWidth';
@@ -32,7 +33,7 @@ function Sidebar({ handleClose }: IProps) {
     <>
       <S.UserInfo>
         <S.UserName>John Doe</S.UserName>
-        <S.UserBalance>3.452,15 EUR</S.UserBalance>
+        <S.UserBalance>{toMoneyString(34235.5)} EUR</S.UserBalance>
       </S.UserInfo>
       <Logout handleLogout={handleLogout} />
       <Divider>Account</Divider>
@@ -76,7 +77,6 @@ function Sidebar({ handleClose }: IProps) {
 }
 
 export default Sidebar;
-
 
 const RepoLink = styled.a`
   display: flex;

@@ -1,6 +1,8 @@
-import * as S from './Transaction.styles';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { RiMoreFill } from 'react-icons/ri';
+
+import { toMoneyString } from 'shared/utils/toMoneyString';
+import * as S from './Transaction.styles';
 
 export interface TransactionType {
   id: string;
@@ -16,7 +18,7 @@ const Transaction = ({ id, received, amount, receiver, sender }: TransactionType
       <S.Row>
         <S.Amount received={received}>
           {!received && '-'}
-          {amount} EUR
+          { toMoneyString(amount)} EUR
         </S.Amount>
         <RiMoreFill />
       </S.Row>
