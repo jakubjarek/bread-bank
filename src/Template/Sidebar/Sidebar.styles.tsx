@@ -44,7 +44,6 @@ export const FixedContainer = styled.div`
   max-width: ${({ theme }) => theme.size.sidebar};
   height: 100%;
   background-color: ${({ theme }) => theme.color.lightGray};
-  /* border-right: 2px solid ${({ theme }) => theme.color.black}; */
   border-right: 1px solid #e1e4e6;
   z-index: 99;
   transform: translateX(-100%);
@@ -81,4 +80,25 @@ export const Icons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const UserInfo = styled.div`
+  padding: 1rem 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: 5px;
+`;
+
+export const UserName = styled.span`
+  color: ${({ theme }) => theme.color.gray};
+  font-weight: 500;
+`;
+
+export const UserBalance = styled.span`
+  color: ${({ theme }) => theme.color.black};
+  font-weight: 600;
 `;

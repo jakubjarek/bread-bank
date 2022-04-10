@@ -30,6 +30,10 @@ function Sidebar({ handleClose }: IProps) {
 
   const AuthenticatedContent = (
     <>
+      <S.UserInfo>
+        <S.UserName>John Doe</S.UserName>
+        <S.UserBalance>3.452,15 EUR</S.UserBalance>
+      </S.UserInfo>
       <Logout handleLogout={handleLogout} />
       <Divider>Account</Divider>
       <ul>
@@ -72,6 +76,7 @@ function Sidebar({ handleClose }: IProps) {
 }
 
 export default Sidebar;
+
 
 const RepoLink = styled.a`
   display: flex;
