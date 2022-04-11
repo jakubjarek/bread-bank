@@ -1,5 +1,5 @@
-import Logo from '../../shared/components/Logo';
-import LoginForm from '../../Template/LoginForm/LoginForm';
+import Logo from 'shared/components/Logo';
+import LoginForm from './LoginForm/LoginForm';
 import * as S from './Unauthenticated.styles';
 
 const Unauthenticated = () => {

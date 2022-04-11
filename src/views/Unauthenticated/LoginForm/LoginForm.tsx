@@ -7,7 +7,7 @@ import Input from 'shared/components/Input/Input';
 
 // firebase
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../../firebase';
 
 const FIREBASE_ERROR_MESSAGES = {
   'auth/invalid-email': 'E-mail is invalid',
