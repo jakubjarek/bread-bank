@@ -21,10 +21,11 @@ export const Label = styled.label<InputTypes>`
   border-color: ${({ invalid, theme: { color } }) => (invalid ? color.red : color.black)};
   border-bottom: 0;
   font-size: ${({ theme: { fontSize } }) => fontSize.s};
+  font-weight: 500;
 
   // invalid styling
   background-color: ${({ invalid, theme: { color } }) => invalid && color.red};
-  color: ${({ invalid, theme: { color } }) => invalid && color.red};
+  color: ${({ invalid, theme: { color } }) => invalid && color.white};
 `;
 
 export const Container = styled.div<InputTypes>`
@@ -59,10 +60,10 @@ export const Input = styled.input`
 export const Icon = styled.div`
   height: 100%;
   padding: 4px 8px;
-  background-color: ${({ theme: { color } }) => color.white};
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme: { color } }) => color.white};
 
   & svg {
     width: 1.5rem;
