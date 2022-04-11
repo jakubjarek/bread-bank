@@ -1,10 +1,21 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
   width: 100%;
   position: relative;
+`;
+
+export const ErrorList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  margin-left: 0.75rem;
+`;
+
+export const ErrorItem = styled.li`
+  color: ${({ theme }) => theme.color.red};
+  font-size: ${({ theme }) => theme.fontSize.s};
 `;
 
 export const Form = styled.form`

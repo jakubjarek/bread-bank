@@ -1,69 +1,109 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-import { useAuth } from 'Auth/useAuth';
 import * as S from './LoginForm.styles';
 
 import Spinner from 'shared/components/Spinner';
 import Input from 'shared/components/Input/Input';
 
+// firebase
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+
+const FIREBASE_ERROR_MESSAGES = {
+  'auth/invalid-email': 'E-mail is invalid',
+  'auth/wrong-password': 'Password is invalid',
+  'auth/user-not-found': 'No user with that email found',
+};
+
+const ERROR_MESSAGES = {
+  'blank-email': "E-mail can't be blank",
+  'blank-password': "Password can't be blank",
+};
+
+const INPUT_NAME = {
+  email: 'login.email',
+  password: 'login.password',
+};
+
 function LoginForm() {
-  const [usernameValidity, setUsernameValidity] = useState({ invalid: false, message: '' });
-  const [passwordValidity, setPasswordValidity] = useState({ invalid: false, message: '' });
-  const [usernameValue, setUsernameValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [invalid, setInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
-  const { logIn } = useAuth();
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setUsernameValue(e.target.value);
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setPasswordValue(e.target.value);
+    switch (name) {
+      case INPUT_NAME.email:
+        setEmail(value);
+        return;
+      case INPUT_NAME.password:
+        setPassword(value);
+        return;
+    }
+  };
 
   const handleLogIn = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!usernameValue || !passwordValue) {
+    // Clear current errors so we get
+    // new error stack on each check
+    setErrors([]);
+
+    if (!email || !password) {
+      !email && setErrors((p) => [...p, ERROR_MESSAGES['blank-email']]);
+      !password && setErrors((p) => [...p, ERROR_MESSAGES['blank-password']]);
+      setInvalid(true);
       return;
     }
 
     setLoading(true);
 
     try {
-      await logIn({ login: usernameValue, password: passwordValue });
-    } catch (error) {
-      setUsernameValidity({ invalid: true, message: String(error) });
-      setPasswordValidity({ invalid: true, message: String(error) });
-      setUsernameValue('');
-      setPasswordValue('');
+      setInvalid(false);
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: any) {
+      console.log(error.code);
       setLoading(false);
+      setInvalid(true);
+      setEmail('');
+      setPassword('');
+
+      //@ts-ignore
+      setErrors((p) => [...p, FIREBASE_ERROR_MESSAGES[error.code]]);
     }
   };
 
   return (
     <S.Wrapper>
+      <S.ErrorList>
+        {errors?.map((e) => (
+          <S.ErrorItem key={e}>{e}</S.ErrorItem>
+        ))}
+      </S.ErrorList>
       <S.Form>
         <Input
-          inputId={'login.username'}
-          label={'Username'}
-          placeholder={'Username'}
+          inputId={INPUT_NAME.email}
+          name={INPUT_NAME.email}
+          label={'E-mail address'}
+          placeholder={'E-mail address'}
           type={'email'}
-          invalid={usernameValidity.invalid}
-          invalidMessage={usernameValidity.message}
-          value={usernameValue}
-          handleChange={handleEmailChange}
+          invalid={invalid}
+          value={email}
+          handleChange={handleInputChange}
         />
 
         <Input
-          inputId={'login.password'}
+          inputId={INPUT_NAME.password}
+          name={INPUT_NAME.password}
           label={'Password'}
           placeholder={'Password'}
           type={'password'}
-          invalid={passwordValidity.invalid}
-          invalidMessage={passwordValidity.message}
-          value={passwordValue}
-          handleChange={handlePasswordChange}
+          invalid={invalid}
+          value={password}
+          handleChange={handleInputChange}
         />
         <S.Submit disabled={loading} onClick={handleLogIn}>
           Log In
