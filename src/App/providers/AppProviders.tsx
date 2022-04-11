@@ -9,13 +9,11 @@ import theme from '../theme/theme';
 const AppProviders = ({ children }: { children: JSX.Element }) => {
   return (
     <Router>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <NormalizeStyle />
-          {children}
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <NormalizeStyle />
+        <AuthProvider>{children}</AuthProvider>
+      </ThemeProvider>
     </Router>
   );
 };

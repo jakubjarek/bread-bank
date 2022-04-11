@@ -1,57 +1,38 @@
 import { useState, useEffect, useContext, createContext } from 'react';
 
-const USER = {
-  login: 'user',
-  password: 'pass',
-};
+// firebase
+import { auth } from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
-interface IUser {
-  login: string;
-  password: string;
-}
+import BootAnimation from 'views/BootAnimation/BootAnimation';
 
 type AuthContextType = {
-  user: IUser | null;
-  logIn: (userInfo: IUser) => void;
-  logOut: () => void;
+  user: string;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState('');
+  const [waiting, setWaiting] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setUser(JSON.parse(token));
-    }
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user.uid);
+      } else {
+        setUser('');
+      }
+      setWaiting(false);
+    });
+
+    return unsubscribe;
   }, []);
 
-  const logIn = (userInfo: IUser) => {
-    const { login, password } = userInfo;
-    const delay = (0.7 + Math.random() * 2) * 1000;
-
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(function () {
-        if (login === USER.login && password === USER.password) {
-          resolve();
-          setUser({ login, password });
-          localStorage.setItem('token', JSON.stringify({ login, password }));
-        } else {
-          reject(new Error('Invalid email or password'));
-        }
-      }, delay);
-    });
-  };
-
-  const logOut = () => {
-    setUser(null);
-    localStorage.removeItem('token');
-  };
-
   return (
-    <AuthContext.Provider value={{ user, logIn, logOut }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>
+      {waiting ? <BootAnimation /> : children}
+    </AuthContext.Provider>
   );
 };
 

@@ -1,24 +1,20 @@
-// @ts-nocheck
-
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RiCloseFill, RiLink } from 'react-icons/ri';
 
-import { getTransaction } from '../History';
 import { TransactionType } from '../Transaction/Transaction';
 
 import * as S from './TransactionDetails.styles';
 import Modal from 'shared/components/Modal/Modal';
 
 const TransactionDetails = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<TransactionType | null>(null);
 
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
-    // mock a GET request using transaction id to get specified data
-    setData(getTransaction(params.transactionId));
+    // GET request using transaction id to get specified data
   }, [params]);
 
   const handleClose = () => {
@@ -47,9 +43,9 @@ const TransactionDetails = () => {
               <S.Heading>Transaction details:</S.Heading>
               <S.Subheading>
                 ⭐{' '}
-                {data.received
-                  ? `You received ${data.amount} EUR from ${data.sender}`
-                  : `You transferred ${data.amount} EUR to ${data.receiver}`}{' '}
+                {data?.received
+                  ? `You received ${data?.amount} EUR from ${data?.sender}`
+                  : `You transferred ${data?.amount} EUR to ${data?.receiver}`}{' '}
                 ⭐
               </S.Subheading>
             </S.HeadingSection>
@@ -60,15 +56,15 @@ const TransactionDetails = () => {
               </S.DetailsItem>
               <S.DetailsItem>
                 <S.ItemTitle>amount:</S.ItemTitle>
-                <S.ItemText>{data.amount} EUR</S.ItemText>
+                <S.ItemText>{data?.amount} EUR</S.ItemText>
               </S.DetailsItem>
               <S.DetailsItem>
                 <S.ItemTitle>receiver:</S.ItemTitle>
-                <S.ItemText>{data.receiver}</S.ItemText>
+                <S.ItemText>{data?.receiver}</S.ItemText>
               </S.DetailsItem>
               <S.DetailsItem>
                 <S.ItemTitle>sender:</S.ItemTitle>
-                <S.ItemText>{data.sender}</S.ItemText>
+                <S.ItemText>{data?.sender}</S.ItemText>
               </S.DetailsItem>
             </S.Details>
           </S.Container>

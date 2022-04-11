@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { AiFillGithub } from 'react-icons/ai';
 
-import { toMoneyString } from 'shared/utils/toMoneyString';
 import { unauthItems, authItems } from './sidebar-items';
-import { useAuth } from 'Auth/useAuth';
 import useWindowWidth from 'shared/hooks/useWindowWidth';
+import { useAuth } from 'Auth/useAuth';
+import { toMoneyString } from 'shared/utils/toMoneyString';
 import * as S from './Sidebar.styles';
 
 import SidebarItem from './Item/SidebarItem';
@@ -20,14 +19,8 @@ interface IProps {
 }
 
 function Sidebar({ handleClose }: IProps) {
-  const navigate = useNavigate();
-  const { user, logOut } = useAuth();
+  const { user } = useAuth();
   const windowWidth = useWindowWidth();
-
-  const handleLogout = () => {
-    logOut();
-    navigate('/');
-  };
 
   const AuthenticatedContent = (
     <>
@@ -35,7 +28,7 @@ function Sidebar({ handleClose }: IProps) {
         <S.UserName>John Doe</S.UserName>
         <S.UserBalance>{toMoneyString(34235.5)} EUR</S.UserBalance>
       </S.UserInfo>
-      <Logout handleLogout={handleLogout} />
+      <Logout />
       <Divider>Account</Divider>
       <ul>
         {authItems.map(({ text, icon, path }) => (

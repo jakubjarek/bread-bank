@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.color.white};
+  border-radius: 5px;
   box-shadow: rgba(3, 15, 36, 0.25) 0px 1px 2px 0px;
   cursor: pointer;
 

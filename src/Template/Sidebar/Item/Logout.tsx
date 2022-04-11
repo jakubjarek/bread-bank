@@ -4,15 +4,15 @@ import { useSidebar } from '../useSidebar';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { Container, Icon, Text } from './SidebarItem.styles';
 
-type IProps = {
-  handleLogout: () => void;
-};
+//firebase
+import { auth } from '../../../firebase';
+import { signOut } from 'firebase/auth';
 
-const Logout = ({ handleLogout }: IProps) => {
+const Logout = () => {
   const { closeSidebar } = useSidebar();
 
   const handleClick = () => {
-    handleLogout();
+    signOut(auth);
     closeSidebar();
   };
 

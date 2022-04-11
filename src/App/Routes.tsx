@@ -46,7 +46,7 @@ export default Routes;
 
 function RequireAuth() {
   let location = useLocation();
-  const token = localStorage.getItem('token');
+  const { user } = useAuth();
 
-  return token ? <Outlet /> : <Navigate to="/" state={{ from: location }} replace />;
+  return user ? <Outlet /> : <Navigate to="/" state={{ from: location }} replace />;
 }

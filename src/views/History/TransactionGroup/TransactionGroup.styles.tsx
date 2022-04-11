@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: stretch;
-  margin-bottom: 1.5rem;
 `;
 
 export const DateColumn = styled.div`
