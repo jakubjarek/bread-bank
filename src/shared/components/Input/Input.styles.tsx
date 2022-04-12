@@ -31,7 +31,7 @@ export const Label = styled.label<InputTypes>`
 export const Container = styled.div<InputTypes>`
   width: 100%;
   height: 2.5rem;
-  padding: 2px;
+  padding: 2px 6px;
   display: flex;
   align-items: center;
   background-color: ${({ theme: { color } }) => color.white};
@@ -48,7 +48,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   flex: 1;
-  padding: 6px 2px;
+  padding: 6px;
   width: calc(100% - 40px);
 
   &::placeholder {
@@ -59,7 +59,7 @@ export const Input = styled.input`
 
 export const Icon = styled.div`
   height: 100%;
-  padding: 4px 8px;
+  padding: 4px 0;
   display: flex;
   align-items: center;
   justify-content: center;
