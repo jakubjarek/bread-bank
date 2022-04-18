@@ -8,7 +8,7 @@
 
 <br />
 
-<h2 align="center" href="https://bread-bank.vercel.app/"><a>Check out the live demo</a></h2>
+### [Check of the live demo](https://bread-bank.vercel.app/)
 
 <div align="center">
 <h4>login credentials:</h4>
