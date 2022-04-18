@@ -5,7 +5,7 @@ export const toMoneyString = (number: number) => {
   const integerToMoney = (integer: string) => {
     return integer.length <= 3
       ? integer
-      : `${integer.slice(0, integer.length - 3)}.${integer.slice(integer.length - 3)}`;
+      : `${integer.slice(0, integer.length - 3)} ${integer.slice(integer.length - 3)}`;
   };
 
   if (!float) {

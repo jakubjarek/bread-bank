@@ -90,6 +90,7 @@ export const UserInfo = styled.div`
   gap: 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.m};
   background-color: ${({ theme }) => theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.gray};
   border-radius: 5px;
 `;
 

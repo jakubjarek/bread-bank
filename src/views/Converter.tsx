@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import useExchangeRates from 'shared/hooks/useExchangeRates';
+import { toTwoDecimals } from 'shared/utils/toTwoDecimals';
 import * as S from './Converter.styles';
-
-// not really accurate
-const toTwoDecimals = (num: number) => Number(num.toFixed(2));
 
 interface IState {
   // empty string so the input can be - in fact - empty

@@ -1,37 +1,54 @@
+//@ts-nocheck
+
 import { useState, useEffect, useContext, createContext } from 'react';
 
 // firebase
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import BootAnimation from 'views/BootAnimation/BootAnimation';
+import Preloader from 'views/Preloader/Preloader';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 
 type AuthContextType = {
-  user: string;
+  user: any;
+  accounts: any;
+  details: any;
 };
 
+// const AuthContext = createContext<AuthContextType | null>(null);
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState('');
-  const [waiting, setWaiting] = useState(true);
+  const [user, setUser] = useState(null);
+  const [accounts, setAccounts] = useState();
+  const [details, setDetails] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUser(user.uid);
+        setUser(user);
+        const profileRef = doc(db, 'users', user.uid);
+        const profileSnap = await getDoc(profileRef);
+
+        // subscribe to accounts changes
+        onSnapshot(doc(db, 'accounts', user.uid), (doc) => {
+          setAccounts(doc.data());
+        });
+
+        setDetails(profileSnap.data());
       } else {
-        setUser('');
+        setUser(null);
       }
-      setWaiting(false);
+      setLoading(false);
     });
 
     return unsubscribe;
-  }, []);
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user }}>
-      {waiting ? <BootAnimation /> : children}
+    <AuthContext.Provider value={{ user, accounts, details }}>
+      {loading ? <Preloader /> : children}
     </AuthContext.Provider>
   );
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from 'shared/components/Logo';
 import Spinner from 'shared/components/Spinner';
 
-const BootAnimation = () => {
+const Preloader = () => {
   return (
     <Wrapper>
       <Container>
@@ -14,7 +14,7 @@ const BootAnimation = () => {
   );
 };
 
-export default BootAnimation;
+export default Preloader;
 
 const Wrapper = styled.div`
   position: fixed;

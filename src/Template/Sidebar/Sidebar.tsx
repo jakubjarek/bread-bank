@@ -19,14 +19,16 @@ interface IProps {
 }
 
 function Sidebar({ handleClose }: IProps) {
-  const { user } = useAuth();
+  const { user, accounts, details } = useAuth();
   const windowWidth = useWindowWidth();
 
   const AuthenticatedContent = (
     <>
       <S.UserInfo>
-        <S.UserName>John Doe</S.UserName>
-        <S.UserBalance>{toMoneyString(34235.5)} EUR</S.UserBalance>
+        <S.UserName>
+          {details?.firstName} {details?.lastName}
+        </S.UserName>
+        <S.UserBalance>{toMoneyString(accounts?.main)} EUR</S.UserBalance>
       </S.UserInfo>
       <Logout />
       <Divider>Account</Divider>

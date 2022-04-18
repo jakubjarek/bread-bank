@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { AiOutlineMail } from 'react-icons/ai';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
+import { auth } from '../../../firebase';
 import * as S from './LoginForm.styles';
 
 import Spinner from 'shared/components/Spinner';
 import Input from 'shared/components/Input/Input';
-
-// firebase
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase';
 
 const FIREBASE_ERROR_MESSAGES = {
   'auth/invalid-email': 'E-mail is invalid',
@@ -85,25 +85,27 @@ function LoginForm() {
       </S.ErrorList>
       <S.Form>
         <Input
-          inputId={INPUT_NAME.email}
-          name={INPUT_NAME.email}
+          invalid={invalid}
+          icon={<AiOutlineMail />}
           label={'E-mail address'}
+          id={INPUT_NAME.email}
+          name={INPUT_NAME.email}
           placeholder={'E-mail address'}
           type={'email'}
-          invalid={invalid}
           value={email}
-          handleChange={handleInputChange}
+          onChange={handleInputChange}
         />
 
         <Input
-          inputId={INPUT_NAME.password}
-          name={INPUT_NAME.password}
+          invalid={invalid}
+          icon={<RiLockPasswordLine />}
           label={'Password'}
+          id={INPUT_NAME.password}
+          name={INPUT_NAME.password}
           placeholder={'Password'}
           type={'password'}
-          invalid={invalid}
           value={password}
-          handleChange={handleInputChange}
+          onChange={handleInputChange}
         />
         <S.Submit disabled={loading} onClick={handleLogIn}>
           Log In

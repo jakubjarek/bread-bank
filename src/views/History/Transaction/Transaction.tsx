@@ -18,7 +18,7 @@ const Transaction = ({ id, received, amount, receiver, sender }: TransactionType
       <S.Row>
         <S.Amount received={received}>
           {!received && '-'}
-          { toMoneyString(amount)} EUR
+          {toMoneyString(amount)} EUR
         </S.Amount>
         <RiMoreFill />
       </S.Row>
