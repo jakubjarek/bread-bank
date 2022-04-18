@@ -10,10 +10,8 @@
 
 ### [Check of the live demo](https://bread-bank.vercel.app/)
 
-<div align="center">
 <h4>login credentials:</h4>
 <h3>test@user.com / pass1234</h3>
-</div>
 
 <br />
 
