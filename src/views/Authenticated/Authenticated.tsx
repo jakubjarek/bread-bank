@@ -1,11 +1,18 @@
+import { useState } from 'react';
+
 import { useAuth } from 'Auth/useAuth';
 import { toMoneyString } from 'shared/utils/toMoneyString';
 
 import * as S from './Authenticated.styles';
 import Divider from 'shared/components/Divider';
+import Modal from 'shared/components/Modal/Modal';
+import NewTransaction from './NewTransaction/NewTransaction';
 
 const Authenticated = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const { accounts } = useAuth();
+
+  const closeModal = () => setModalOpen(false);
 
   const NoHistory = (
     <div style={{ paddingBlock: '1rem' }}>
@@ -19,9 +26,15 @@ const Authenticated = () => {
         <p>Account balance:</p>
         <p>{toMoneyString(accounts?.main)} EUR</p>
       </S.InfoContainer>
-      <S.NewTransaciton>New transaction</S.NewTransaciton>
+      <S.NewTransaciton onClick={() => setModalOpen(true)}>New transaction</S.NewTransaciton>
       <Divider>Today's history</Divider>
       <S.HistoryContainer>{NoHistory}</S.HistoryContainer>
+      {modalOpen && (
+        <Modal
+          handleOutsideClick={closeModal}
+          renderContent={<NewTransaction handleModalClose={closeModal} />}
+        />
+      )}
     </>
   );
 };
