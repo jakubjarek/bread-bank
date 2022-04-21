@@ -12,11 +12,11 @@ export const NewTransaciton = styled.button`
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
-  transition: 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.lightGray};
     color: ${({ theme }) => theme.color.black};
   }
 `;
