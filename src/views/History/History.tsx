@@ -35,7 +35,7 @@ const History = () => {
     <GroupsContainer>
       {/*  TransactionGroups here */}
       {data.map((t) => {
-        return <TransactionGroup date={''} transactions={data} />;
+        return <TransactionGroup key={nanoid()} date={''} transactions={data} />;
       })}
       <Outlet />
     </GroupsContainer>

@@ -8,8 +8,7 @@ import Rates from 'views/Rates';
 import Converter from 'views/Converter';
 import Contact from 'views/Contact';
 import Savings from 'views/Savings/Savings';
-import Transfer from 'views/Savings/Transfer/Transfer';
-import Withdraw from 'views/Savings/Withdraw/Withdraw';
+import Operation from 'views/Savings/Operation/Operation';
 import History from 'views/History/History';
 import TransactionDetails from 'views/History/TransactionDetails/TransactionDetails';
 
@@ -26,8 +25,8 @@ const Routes = () => {
       {/* protected routes */}
       <Route element={<RequireAuth />}>
         <Route path="savings" element={<Savings />}>
-          <Route path="transfer" element={<Transfer />} />
-          <Route path="withdraw" element={<Withdraw />} />
+          <Route path="transfer" element={<Operation type="transfer" />} />
+          <Route path="withdraw" element={<Operation type="withdraw" />} />
         </Route>
         <Route path="history" element={<History />}>
           <Route path="transactions/:transactionId" element={<TransactionDetails />} />

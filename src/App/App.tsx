@@ -2,7 +2,7 @@ import AppProviders from './providers/AppProviders';
 import Template from 'Template/Template';
 import Routes from './Routes';
 
-const Root = () => {
+const App = () => {
   return (
     <AppProviders>
       <Template>
@@ -12,4 +12,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default App;
