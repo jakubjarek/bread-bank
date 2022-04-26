@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import * as S from './TransactionGroup.styles';
 import Transaction, { TransactionType } from '../Transaction/Transaction';
-import { Link } from 'react-router-dom';
 
 interface IProps {
   date: string;
@@ -8,26 +9,25 @@ interface IProps {
 }
 
 const TransactionGroup = ({ date, transactions }: IProps) => {
+  // date's format is 'Mar 30 05 2022'
+  const [dayAbbrev, dayNumber, month, year] = date.split(' ');
+
   return (
     <S.Container>
       <S.DateColumn>
         <S.Date>
-          <S.DayAbbrev>Mon</S.DayAbbrev>
-          <S.DayNumber>24</S.DayNumber>
-          <S.Month>05.2022</S.Month>
+          <S.DayAbbrev>{dayAbbrev}</S.DayAbbrev>
+          <S.DayNumber>{dayNumber}</S.DayNumber>
+          <S.Month>
+            {month}.{year}
+          </S.Month>
         </S.Date>
         <S.VerticalBar />
       </S.DateColumn>
       <S.TransactionsColumn>
-        {transactions.map((t) => (
-          <Link key={t.id} to={`transactions/${t.id}`}>
-            <Transaction
-              id={t.id}
-              received={t.received}
-              amount={t.amount}
-              receiver={t.receiver}
-              sender={t.sender}
-            />
+        {transactions.map((transaction) => (
+          <Link key={transaction.id} to={`transactions/${transaction.id}`}>
+            <Transaction data={transaction} />
           </Link>
         ))}
       </S.TransactionsColumn>
