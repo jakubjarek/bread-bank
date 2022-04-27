@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appear = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,6 +26,7 @@ export const Backdrop = styled.div`
   position: fixed;
   inset: 0;
   background-color: ${({ theme }) => theme.color.backdropDark};
+  animation: ${appear} 150ms linear forwards;
 `;
 
 export const Content = styled.div`
