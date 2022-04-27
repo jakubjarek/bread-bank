@@ -59,8 +59,6 @@ const Operation = ({ type }: IProps) => {
       saving: toTwoDecimals(accounts.saving + (type === 'transfer' ? +amount : -amount)),
     });
 
-    // add to history
-    const historyRef = doc(db, 'history', user.uid);
 
     handleModalClose();
   };
