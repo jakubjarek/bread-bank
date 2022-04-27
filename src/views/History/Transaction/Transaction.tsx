@@ -6,25 +6,31 @@ import * as S from './Transaction.styles';
 
 export interface TransactionType {
   id: string;
-  received: boolean;
+  type: 'receive' | 'send';
   amount: number;
   receiver: string;
   sender: string;
+  date: {
+    seconds: number;
+    nanoseconds: number;
+  };
 }
 
-const Transaction = ({ id, received, amount, receiver, sender }: TransactionType) => {
+const Transaction = ({ data }: { data: TransactionType }) => {
+  const { type, amount, receiver, sender } = data;
+
   return (
     <S.Container title="Show transaction details">
       <S.Row>
-        <S.Amount received={received}>
-          {!received && '-'}
+        <S.Amount type={type}>
+          {type === 'send' && '-'}
           {toMoneyString(amount)} EUR
         </S.Amount>
         <RiMoreFill />
       </S.Row>
       <S.Participant>
-        {received ? <BsArrowLeft size={14} /> : <BsArrowRight size={14} />}
-        {received ? sender : receiver}
+        {type === 'receive' ? <BsArrowLeft size={14} /> : <BsArrowRight size={14} />}
+        {type === 'receive' ? sender : receiver}
       </S.Participant>
     </S.Container>
   );

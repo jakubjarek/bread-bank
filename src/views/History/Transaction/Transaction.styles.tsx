@@ -28,10 +28,10 @@ export const Row = styled.div`
   }
 `;
 
-export const Amount = styled.span<{ received: boolean }>`
+export const Amount = styled.span<{ type: string }>`
   font-size: ${({ theme }) => theme.fontSize.l};
   font-weight: 700;
-  color: ${({ theme, received }) => (received ? theme.color.green : theme.color.red)};
+  color: ${({ theme, type }) => (type === 'receive' ? theme.color.green : theme.color.red)};
 `;
 
 export const Participant = styled.span`
