@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const LoadingContainer = styled.div`
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Container = styled.div`
   width: 100%;
   padding: 1.5rem 1rem 2rem;
