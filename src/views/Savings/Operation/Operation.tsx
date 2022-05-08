@@ -17,33 +17,39 @@ interface IProps {
 }
 
 const Operation = ({ type }: IProps) => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number | ''>(0);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { accounts, user } = useAuth();
 
   const headingText =
     type === 'transfer'
-      ? 'Transfer to your savings account from your main account'
+      ? 'Transfer to your savings account'
       : 'Withdraw from your savings account';
 
   const handleModalClose = () => navigate('/savings');
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setAmount(parseInt(value, 10));
+
+    if (!value) {
+      setAmount('');
+      return;
+    }
+
+    setAmount(+value);
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (amount < 1) {
-      setError('Amount has to be greater than 0.');
+    if (!amount) {
+      setError('Amount has to be a number.');
       return;
     }
 
-    if (isNaN(amount)) {
-      setError("Amount can't be empty.");
+    if (amount < 1) {
+      setError('Amount has to be greater than 0.');
       return;
     }
 
@@ -58,7 +64,6 @@ const Operation = ({ type }: IProps) => {
       main: toTwoDecimals(accounts.main + (type === 'transfer' ? -amount : +amount)),
       saving: toTwoDecimals(accounts.saving + (type === 'transfer' ? +amount : -amount)),
     });
-
 
     handleModalClose();
   };
@@ -80,7 +85,7 @@ const Operation = ({ type }: IProps) => {
             {type === 'transfer' ? (
               <p>Main account balance: {toMoneyString(accounts.main)} EUR</p>
             ) : (
-              <p>Savings account balance: {toMoneyString(accounts.saving)}</p>
+              <p>Savings account balance: {toMoneyString(accounts.saving)} EUR</p>
             )}
 
             <form>
@@ -94,7 +99,7 @@ const Operation = ({ type }: IProps) => {
               />
               <S.ErrorMessage>{error}</S.ErrorMessage>
               <S.SubmitButton type="submit" onClick={handleSubmit}>
-                Transfer
+                {type === 'transfer' ? 'Transfer' : 'Withdraw'}
               </S.SubmitButton>
             </form>
           </S.Container>
