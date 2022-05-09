@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { RiCloseFill, RiLink } from 'react-icons/ri';
 
 import { TransactionType } from '../Transaction/Transaction';
-import useDoc from 'useDoc';
+import useDoc from 'shared/hooks/useDoc';
 
 import * as S from './TransactionDetails.styles';
 import Modal from 'shared/components/Modal/Modal';

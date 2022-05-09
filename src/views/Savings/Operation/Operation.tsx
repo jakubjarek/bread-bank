@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { doc, updateDoc } from 'firebase/firestore';
 import { RiCloseFill } from 'react-icons/ri';
@@ -11,62 +10,41 @@ import { toTwoDecimals } from 'shared/utils/toTwoDecimals';
 import * as S from './Operation.styles';
 import Input from 'shared/components/Input/Input';
 import Modal from 'shared/components/Modal/Modal';
+import useAccountControlledInput from 'shared/hooks/useAccountControlledInput';
 
-interface IProps {
-  type: 'transfer' | 'withdraw';
-}
+type OperationType = 'transfer' | 'withdraw';
 
-const Operation = ({ type }: IProps) => {
-  const [amount, setAmount] = useState<number | ''>(0);
-  const [error, setError] = useState('');
+const Operation = ({ type }: { type: OperationType }) => {
+  const isTransfer = type === 'transfer';
   const navigate = useNavigate();
   const { accounts, user } = useAuth();
 
-  const headingText =
-    type === 'transfer'
-      ? 'Transfer to your savings account'
-      : 'Withdraw from your savings account';
+  const { value, handleValueChange, isInputValid, error } = useAccountControlledInput(
+    isTransfer ? accounts!.main : accounts!.saving
+  );
+
+  const updateAccounts = async () => {
+    const accountRef = doc(db, 'accounts', user!.uid);
+    await updateDoc(accountRef, {
+      main: toTwoDecimals(accounts!.main + (isTransfer ? -value : +value)),
+      saving: toTwoDecimals(accounts!.saving + (isTransfer ? +value : -value)),
+    });
+  };
 
   const handleModalClose = () => navigate('/savings');
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    if (!value) {
-      setAmount('');
-      return;
-    }
-
-    setAmount(+value);
-  };
-
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    if (!isInputValid()) return;
+    if (typeof value !== 'number') return;
 
-    if (!amount) {
-      setError('Amount has to be a number.');
-      return;
-    }
-
-    if (amount < 1) {
-      setError('Amount has to be greater than 0.');
-      return;
-    }
-
-    if (amount > accounts.main) {
-      setError("Amount can't be geater than the current balance.");
-      return;
-    }
-
-    // update accounts
-    const accountRef = doc(db, 'accounts', user.uid);
-    await updateDoc(accountRef, {
-      main: toTwoDecimals(accounts.main + (type === 'transfer' ? -amount : +amount)),
-      saving: toTwoDecimals(accounts.saving + (type === 'transfer' ? +amount : -amount)),
-    });
-
+    await updateAccounts();
     handleModalClose();
   };
+
+  const headingText = isTransfer
+    ? 'Transfer to your savings account'
+    : 'Withdraw from your savings account';
 
   return (
     <>
@@ -82,24 +60,24 @@ const Operation = ({ type }: IProps) => {
 
             <h2>{headingText}</h2>
 
-            {type === 'transfer' ? (
-              <p>Main account balance: {toMoneyString(accounts.main)} EUR</p>
+            {isTransfer ? (
+              <p>Main account balance: {toMoneyString(accounts!.main)} EUR</p>
             ) : (
-              <p>Savings account balance: {toMoneyString(accounts.saving)} EUR</p>
+              <p>Savings account balance: {toMoneyString(accounts!.saving)} EUR</p>
             )}
 
             <form>
               <Input
                 placeholder="Amount"
-                label={type === 'transfer' ? 'Amount to transfer' : 'Amount to withdraw'}
+                label={isTransfer ? 'Amount to transfer' : 'Amount to withdraw'}
                 type="number"
-                value={amount}
-                onChange={handleAmountChange}
+                value={value}
+                onChange={handleValueChange}
                 invalid={Boolean(error.length)}
               />
               <S.ErrorMessage>{error}</S.ErrorMessage>
               <S.SubmitButton type="submit" onClick={handleSubmit}>
-                {type === 'transfer' ? 'Transfer' : 'Withdraw'}
+                {isTransfer ? 'Transfer' : 'Withdraw'}
               </S.SubmitButton>
             </form>
           </S.Container>
