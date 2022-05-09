@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { fromUnixTime, format } from 'date-fns';
 
+import groupTransactionsByDate from './utils/groupTransactionsByDate';
 import { TransactionType } from './Transaction/Transaction';
-import useDoc from 'useDoc';
+import useDoc from 'shared/hooks/useDoc';
 
 import Spinner from 'shared/components/Spinner';
 import TransactionGroup from './TransactionGroup/TransactionGroup';
@@ -35,7 +35,6 @@ const History = () => {
       <div>
         Something went wrong... 😕
         <br />
-        {error}
       </div>
     );
   }
@@ -44,7 +43,7 @@ const History = () => {
     <GroupsContainer>
       {transactionList &&
         groupTransactionsByDate(transactionList).map(({ date, transactions }, idx) => (
-          <TransactionGroup key={idx} date={date} transactions={transactions} />
+          <TransactionGroup key={idx} date={date.formated} transactions={transactions} />
         ))}
       <Outlet />
     </GroupsContainer>
@@ -65,40 +64,3 @@ const LoadingContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-function groupTransactionsByDate(transactionList: TransactionType[]) {
-  const grouped: { date: string; transactions: TransactionType[] }[] = [];
-
-  transactionList.forEach((t) => {
-    // unix time to: 'Mon 30 02 2022'
-    const dateString = format(fromUnixTime(t.date.seconds), 'iii dd LL yyyy');
-
-    let hasGroup = false;
-
-    if (!grouped.length) {
-      grouped.push({
-        date: dateString,
-        transactions: [t],
-      });
-      return;
-    }
-
-    grouped.forEach((g) => {
-      if (g.date === dateString) {
-        hasGroup = true;
-        g.transactions.push(t);
-        return;
-      }
-    });
-
-    if (!hasGroup) {
-      grouped.push({
-        date: dateString,
-        transactions: [t],
-      });
-      return;
-    }
-  });
-
-  return grouped;
-}
