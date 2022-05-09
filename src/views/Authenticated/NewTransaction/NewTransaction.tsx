@@ -1,52 +1,28 @@
-import { useState } from 'react';
-import * as S from './NewTransaction.styles';
-
-import Input from 'shared/components/Input/Input';
 import { useAuth } from 'Auth/useAuth';
-import { toTwoDecimals } from 'shared/utils/toTwoDecimals';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../../firebase';
+import useAccountControlledInput from 'shared/hooks/useAccountControlledInput';
+import updateHistory from './utils/updateHistory';
+import updateAccounts from './utils/updateAccounts';
+
+import * as S from './NewTransaction.styles';
+import Input from 'shared/components/Input/Input';
 
 interface IProps {
   handleModalClose: () => void;
 }
 
 const NewTransaction = ({ handleModalClose }: IProps) => {
-  const [amount, setAmount] = useState(0);
-  const [error, setError] = useState('');
   const { user, accounts } = useAuth();
-
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setAmount(parseInt(value, 10));
-  };
+  const { value, handleValueChange, isInputValid, error } = useAccountControlledInput(
+    accounts!.main
+  );
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    if (!isInputValid()) return;
+    if (typeof value !== 'number') return;
 
-    if (amount < 1) {
-      setError('Amount has to be greater than 0.');
-      return;
-    }
-
-    if (isNaN(amount)) {
-      setError("Amount can't be empty.");
-      return;
-    }
-
-    if (amount > accounts.main) {
-      setError("Amount can't be geater than the current balance.");
-      return;
-    }
-
-    // update accounts
-    const accountRef = doc(db, 'accounts', user.uid);
-    await updateDoc(accountRef, {
-      main: toTwoDecimals(accounts.main + -amount),
-    });
-
-    // add to history
-    const historyRef = doc(db, 'history', user.uid);
+    updateAccounts(value, user, accounts);
+    updateHistory(value, user);
 
     handleModalClose();
   };
@@ -76,10 +52,10 @@ const NewTransaction = ({ handleModalClose }: IProps) => {
         <div>
           <Input
             invalid={Boolean(error.length)}
+            value={value}
+            onChange={handleValueChange}
             type="number"
             label="Amount"
-            value={amount}
-            onChange={handleAmountChange}
           />
         </div>
         <span style={{ color: 'red' }}>{error}</span>
