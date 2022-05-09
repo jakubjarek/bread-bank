@@ -1,27 +1,27 @@
-//@ts-nocheck
-
 import { useState, useEffect, useContext, createContext } from 'react';
 
-// firebase
-import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+// firebase types
+import { User } from 'firebase/auth';
+import { DocumentData } from 'firebase/firestore';
 
+import { auth, db } from '../firebase';
 import Preloader from 'views/Preloader/Preloader';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 
 type AuthContextType = {
-  user: any;
-  accounts: any;
-  details: any;
+  user: User | null;
+  accounts: DocumentData | undefined;
+  details: DocumentData | undefined;
 };
 
 // const AuthContext = createContext<AuthContextType | null>(null);
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [accounts, setAccounts] = useState();
-  const [details, setDetails] = useState();
+  const [user, setUser] = useState<AuthContextType['user']>(null);
+  const [accounts, setAccounts] = useState<DocumentData | undefined>();
+  const [details, setDetails] = useState<DocumentData | undefined>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
