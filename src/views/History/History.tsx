@@ -43,7 +43,7 @@ const History = () => {
     <GroupsContainer>
       {transactionList &&
         groupTransactionsByDate(transactionList).map(({ date, transactions }, idx) => (
-          <TransactionGroup key={idx} date={date.formated} transactions={transactions} />
+          <TransactionGroup key={idx} date={date.formatted} transactions={transactions} />
         ))}
       <Outlet />
     </GroupsContainer>
