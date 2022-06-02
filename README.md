@@ -8,10 +8,9 @@
 
 <br />
 
-### [Check of the live demo](https://bread-bank.vercel.app/)
+## [Check out the live demo](https://bread-bank.vercel.app/)
 
-<h4>login credentials:</h4>
-<h3>test@user.com / pass1234</h3>
+### login credentials: test@user.com / pass1234
 
 <br />
 
@@ -28,7 +27,7 @@
 
 ## General info 🙋‍♂️
 
-**This project is still in development**. **It is made for educational pourposes**.
+**This project is still in development**. **It is made for educational purposes**.
 
 👉 It is a simulation of a banking
 application, which lets users make money
@@ -42,44 +41,25 @@ savings account.
 have access to currency converter and
 other bank-related functions.
 
-
-**Currently, it has some of the features missing that are described below. This is a consequence of using git incorrectly and some cruel overestimation. But at least I've learnt something 🤷‍♀️.**
-
-
-
-
-I wanted to build something that can represent my current knowledge of application building and at the same time try new technologies like `TypeScript` or `styled-components`.
-
-Working on it let me train these particiular skills:
-
-- Working with dates
-- Working with API data
-- Creating public and protected routes
-- Using styled-components
-- Using typescirpt with React
-- Error handling
-- Testing
-- Using firebase
-- Organising a semi-large project
-
-During earlier stages of development I've had some problem with project structure. At first I've went with atomic design, but something didn't feel right about it.  
-Probably the mess I've made using it incorretly. Later I've switched the current architechture, which I really admire for it's simplcity and keeping everything close.
-It was inspired by a few open-source repositories on GitHub.
+<br />
 
 ## What's missing and what can be improved?
 
-- Accesability
-- Old components refactor
+- Tests
 - Better usage of Firebase
-- Rethink global state
+- Accesability improvements
+- Global state improvements
+- Some of the older components need a refactor
 
-## Technologies 🎡
+<br />
 
-- Bootstrapped with Create React App
-- TypeScript
-- StyledComponents
-- ReactRouter
+## Technology stack 🤠
+
 - Firebase
+- TypeScript
+- ReactRouter
+- StyledComponents
+- Bootstrapped with Create React App
 
 <br />
 
